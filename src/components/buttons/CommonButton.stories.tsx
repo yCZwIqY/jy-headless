@@ -12,13 +12,16 @@ const meta: Meta<typeof CommonButton> = {
         children: {control: 'text', description: 'label'},
         additionalClass: {control: 'text'},
         className: {control: 'text'},
-        disabled: {control: 'boolean'}
+        disabled: {control: 'boolean'},
+        size: {control: 'select', options: ['sm', 'md', 'lg']},
+
     },
     args: {
         children: '',
         additionalClass: '',
         className: '',
         disabled: false,
+        size: "md"
     }
 } as StoryObj<typeof CommonButton>;
 
@@ -38,6 +41,15 @@ export const Disabled: Story = {
     }
 };
 
+export const AdditionalClass: Story = {
+    args: {
+        children: 'Additional Class',
+        additionalClass: 'text-red-500 text-lg'
+    }
+};
 export const CustomClass: Story = {
-    render: () => <CommonButton className={'bg-indigo-500 text-white p-3'}>CustomClass</CommonButton>
+    args: {
+        children: 'Custom Class',
+        className: 'bg-indigo-500 text-white p-3'
+    }
 };
