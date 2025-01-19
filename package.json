@@ -1,7 +1,12 @@
 {
   "name": "jy-headless",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "homepage": "https://github.com/yCZwIqY/jy-headless",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yCZwIqY/jy-headless"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && npm run tailwind",
