@@ -27,6 +27,7 @@ import FileIcon from "./FileIcon.tsx";
 import FolderIcon from "./FolderIcon.tsx";
 import CameraIcon from "./CameraIcon.tsx";
 import VideoIcon from "./VideoIcon.tsx";
+import {ReactNode} from "react";
 
 const meta: Meta = {
     title: "Icons",
@@ -54,10 +55,11 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-const IconMaper = ({icon, name}) => <div className={'w-[50px] flex flex-col items-center text-center'}>
-    {icon}
-    <span>{name}</span>
-</div>
+const IconMaper = ({icon, name}: { icon: ReactNode, name: string }) =>
+    <div className={'w-[50px] flex flex-col items-center text-center'}>
+        {icon}
+        <span>{name}</span>
+    </div>
 
 
 export const Example = {
