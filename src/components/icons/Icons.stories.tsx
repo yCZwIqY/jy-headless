@@ -28,6 +28,7 @@ import FolderIcon from "./FolderIcon.tsx";
 import CameraIcon from "./CameraIcon.tsx";
 import VideoIcon from "./VideoIcon.tsx";
 import {ReactNode} from "react";
+import SpinnerIcon from "./SpinnerIcon.tsx";
 
 const meta: Meta = {
     title: "Icons",
@@ -101,5 +102,6 @@ export const Icons: Story = {
         <IconMaper icon={<CameraIcon color={'black'} size={'30px'}/>} name={'camera'}/>
         <IconMaper icon={<VideoIcon color={'black'} size={'30px'}/>} name={'video'}/>
         <IconMaper icon={<CloseIcon color={'black'} size={'30px'}/>} name={'close'}/>
+        <IconMaper icon={<SpinnerIcon color={'black'} size={'30px'} className={'animate-spin'}/>} name={'spin'}/>
     </div>
 };

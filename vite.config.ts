@@ -1,26 +1,26 @@
-import { defineConfig } from 'vite'
+import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
 import dfs from 'vite-plugin-dts'
 import path from 'path'
 
 export default defineConfig({
-  plugins: [react(), dfs()],
-  build: {
-    lib: {
-      entry: path.resolve(__dirname, 'index.ts'),
-      name: 'JY-Headless-UI',
-      fileName: (format) => `index.${format}.js`,
-    },
-    rollupOptions: {
-      external: ['react', 'react-dom'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
+    plugins: [react(), dfs()],
+    build: {
+        lib: {
+            entry: path.resolve(__dirname, 'index.ts'),
+            name: 'JY-Headless-UI',
+            fileName: (format) => `index.${format}.js`,
         },
-      },
+        rollupOptions: {
+            external: ['react', 'react-dom'],
+            output: {
+                globals: {
+                    react: 'React',
+                    'react-dom': 'ReactDOM',
+                },
+            },
+        },
+        sourcemap: true,
+        emptyOutDir: true,
     },
-    sourcemap: true,
-    emptyOutDir: true,
-  },
 })

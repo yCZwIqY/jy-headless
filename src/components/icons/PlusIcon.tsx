@@ -1,6 +1,6 @@
 import {IconProps} from "../types.ts";
 
-const PlusIcon = ({color, size, width, height, fill}: IconProps) => {
+const PlusIcon = ({color = 'black', size, width, height, fill}: IconProps) => {
     return <svg viewBox="0 0 20 20" fill={fill || 'none'} width={size ?? width} height={size ?? height}
                 xmlns="http://www.w3.org/2000/svg" stroke={color} strokeWidth="0.5">
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

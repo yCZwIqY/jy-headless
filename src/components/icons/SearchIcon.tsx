@@ -1,6 +1,6 @@
 import {IconProps} from "../types.ts";
 
-const SearchIcon = ({color, size, width, height, fill}: IconProps) => {
+const SearchIcon = ({color = 'black', size, width, height, fill}: IconProps) => {
     return <svg viewBox="0 0 20 20" width={size ?? width} height={size ?? height} xmlns="http://www.w3.org/2000/svg"
                 fill={fill || 'none'}>
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

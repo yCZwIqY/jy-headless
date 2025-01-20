@@ -1,6 +1,6 @@
 import {IconProps} from "../types.ts";
 
-const HeartIcon = ({color, size, width, height, fill}: IconProps) => {
+const HeartIcon = ({color = 'black', size, width, height, fill}: IconProps) => {
     return <svg viewBox="0 0 24 24" width={size ?? width} height={size ?? height} fill={fill || 'none'}
                 xmlns="http://www.w3.org/2000/svg">
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

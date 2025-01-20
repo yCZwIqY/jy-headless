@@ -1,7 +1,14 @@
-export const hasValue = (arr: any) => {
+const hasValue = (arr: any) => {
     return arr && arr.length > 0
 }
-export const isEmpty = (arr: any[]) => {
+const isEmpty = (arr: any[]) => {
     return !arr || arr.length <= 0;
 
 }
+
+const ArrayUtils = {
+    hasValue,
+    isEmpty
+}
+
+export default ArrayUtils;

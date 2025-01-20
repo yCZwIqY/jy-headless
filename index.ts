@@ -1,4 +1,4 @@
-export {default as CommonButton} from './src/components/buttons/CommonButton.tsx'
-export * from './src/components/types.ts'
-export * from './src/utils/ArrayUtils.ts'
+export {default as BaseButton} from './src/components/buttons/BaseButton'
+export {IconProps, BaseProps, ButtonProps, Size} from './src/components/types'
+export {default as ArrayUtils} from './src/utils/ArrayUtils'
 export * from './src/components/icons'

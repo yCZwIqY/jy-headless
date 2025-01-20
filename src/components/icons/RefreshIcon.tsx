@@ -1,6 +1,6 @@
 import {IconProps} from "../types.ts";
 
-const RefreshIcon = ({color, size, width, height, fill}: IconProps) => {
+const RefreshIcon = ({color = 'black', size, width, height, fill}: IconProps) => {
     return <svg viewBox="0 0 24 24" fill={fill || 'none'} width={size ?? width} height={size ?? height}
                 xmlns="http://www.w3.org/2000/svg">
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
