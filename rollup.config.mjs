@@ -1,7 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-
+import postcss from 'rollup-plugin-postcss';
 export default {
 	input: 'src/index.tsx',
 	output: [
@@ -21,6 +21,10 @@ export default {
 		commonjs(),
 		typescript({
 			tsconfig: './tsconfig.json',
+		}),
+		postcss({
+			extract: true,
+			minimize: true,
 		}),
 	],
 	external: ['react', 'react-dom'],

@@ -6,7 +6,9 @@
   "typings": "dist/index.d.ts",
   "module": "dist/index.esm.js",
   "scripts": {
-    "build": " rollup -c"
+    "build": " rollup -c",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "files": [
     "dist"
@@ -24,14 +26,26 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@chromatic-com/storybook": "3.2.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
+    "@storybook/addon-essentials": "8.5.0",
+    "@storybook/addon-interactions": "8.5.0",
+    "@storybook/addon-onboarding": "8.5.0",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/blocks": "8.5.0",
+    "@storybook/react": "8.5.0",
+    "@storybook/react-vite": "8.5.0",
+    "@storybook/test": "8.5.0",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
+    "postcss": "^8.5.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rollup": "^4.31.0",
+    "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.36.0",
+    "storybook": "8.5.0",
     "typescript": "^5.7.3"
   }
 }
