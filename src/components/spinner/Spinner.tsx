@@ -1,5 +1,4 @@
 import React from 'react';
-import '../style.css';
 
 interface SpinnerProps {
   color?: string;
@@ -8,9 +7,22 @@ interface SpinnerProps {
   className?: string;
 }
 
+const Spin = () => (
+  <style>{`@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+`}</style>
+);
+
 const Spinner: React.FC<SpinnerProps> = ({ color, size, spinTime }) => {
   return (
     <>
+      <Spin />
       <span style={{ animation: `spin ${spinTime || '2s'} 0s linear infinite` }}>
         <svg
           viewBox="0 0 20 20"
@@ -18,7 +30,7 @@ const Spinner: React.FC<SpinnerProps> = ({ color, size, spinTime }) => {
           xmlns="http://www.w3.org/2000/svg"
           width={size || '30px'}
           height={size || '30px'}
-          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
           fill={color || 'black'}
         >
           <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

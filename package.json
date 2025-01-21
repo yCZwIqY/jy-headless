@@ -1,6 +1,6 @@
 {
   "name": "jy-headless",
-  "version": "0.0.8",
+  "version": "0.0.13",
   "description": "",
   "main": "dist/index.cjs",
   "typings": "dist/index.d.ts",
@@ -48,5 +48,8 @@
     "rollup-plugin-typescript2": "^0.36.0",
     "storybook": "8.5.0",
     "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
   }
 }

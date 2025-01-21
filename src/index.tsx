@@ -1,11 +1,6 @@
 import Button from './components/button/Button';
 import Input from './components/input/Input';
-import { CallIcon, CloseIcon, HomeIcon } from './components/icons';
+import Spinner from './components/spinner/Spinner';
+import { CallIcon, CloseIcon, HomeIcon, SearchIcon } from './components/icons';
 
-const Icons = {
-  CloseIcon,
-  HomeIcon,
-  CallIcon,
-};
-
-export { Button, Input, Icons };
+export { Button, Input, Spinner, CallIcon, CloseIcon, HomeIcon, SearchIcon };

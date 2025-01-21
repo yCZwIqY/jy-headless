@@ -1,6 +1,9 @@
-export { default as CloseIcon } from './CloseIcon';
-export { default as CallIcon } from './CallIcon';
-export { default as HomeIcon } from './HomeIcon';
+import CloseIcon from './CloseIcon';
+import CallIcon from './CallIcon';
+import HomeIcon from './HomeIcon';
+import SearchIcon from './SearchIcon';
+
+export { CloseIcon, CallIcon, HomeIcon, SearchIcon };
 
 export interface IconProps {
   color?: string;

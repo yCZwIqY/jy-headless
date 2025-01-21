@@ -9,7 +9,20 @@
     "outDir": "dist",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "tslib": [
+        "path/to/node_modules/tslib/tslib.d.ts"
+      ]
+    }
   },
-  "include": ["src/**/*", ".storybook/**/*", "stories/**/*"]
+  "include": [
+    "src/**/*",
+    "src/components/icons/**/*"
+  ],
+  "exclude": [
+    ".storybook/**/*",
+    "stories/**/*"
+  ]
 }
