@@ -54,11 +54,12 @@ const RadioInput: React.FC<RadioInputProps> = ({
         onClick={onClick}
       />
       <label htmlFor={uniqueId}>{children}</label>
-      {showError && typeof error === 'string' ? (
-        <span style={{ position: 'absolute', top: '100%', left: 0 }}>{error}</span>
-      ) : (
-        error
-      )}
+      {showError &&
+        (typeof error === 'string' ? (
+          <span style={{ position: 'absolute', top: '100%', left: 0 }}>{error}</span>
+        ) : (
+          error
+        ))}
     </span>
   );
 };

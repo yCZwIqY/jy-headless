@@ -41,11 +41,12 @@ const Input: React.FC<InputProps> = ({
         }}
       />
       {suffixElement}
-      {showError && typeof error === 'string' ? (
-        <span style={{ position: 'absolute', top: '100%', left: 0 }}>{error}</span>
-      ) : (
-        error
-      )}
+      {showError &&
+        (typeof error === 'string' ? (
+          <span style={{ position: 'absolute', top: '100%', left: 0 }}>{error}</span>
+        ) : (
+          error
+        ))}
     </span>
   );
 };

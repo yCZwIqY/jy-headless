@@ -1,33 +1,9 @@
-import React, {
-  createContext,
-  CSSProperties,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { CSSProperties, ReactNode, useMemo, useState } from 'react';
 import RadioInput, { RadioInputProps } from './RadioInput';
 
-export interface RadioGroupContextProps {
-  selectedValues: string[] | null;
-  onToggle: (value: string) => void;
-  clearable?: boolean;
-  readOnly?: boolean;
-  disabled?: boolean;
-}
-
 export interface ItemComposition {
-  Item?: React.FC<RadioInputProps>;
+  Item?: React.FC<RadioGroupItemProps>;
 }
-
-const RadioGroupContext = createContext<RadioGroupContextProps>({
-  selectedValues: [],
-  onToggle: () => {},
-  clearable: false,
-  readOnly: false,
-  disabled: false,
-});
 
 export interface RadioGroupProps {
   children: ReactNode;
@@ -60,24 +36,20 @@ const RadioGroup: React.FC<RadioGroupProps> & ItemComposition = ({
 }: RadioGroupProps) => {
   const [selectedValues, setSelectedValues] = useState<string[]>(value);
 
-  useEffect(() => {
-    setSelectedValues(value);
-  }, [value]);
-
-  const onToggle = (name) => {
+  const onToggle = (id) => {
     if (readOnly || disabled) return;
     let result;
-    if (selectedValues?.includes(name)) {
+    if (selectedValues?.includes(id)) {
       if (clearable) {
-        result = selectedValues.filter((it) => it !== name);
+        result = selectedValues.filter((it) => it !== id);
       } else {
         return;
       }
     } else {
       if (allowMultiSelect) {
-        result = [...selectedValues, name];
+        result = [...selectedValues, id];
       } else {
-        result = [name];
+        result = [id];
       }
     }
 
@@ -86,34 +58,59 @@ const RadioGroup: React.FC<RadioGroupProps> & ItemComposition = ({
   };
 
   return (
-    <RadioGroupContext value={{ selectedValues, onToggle, clearable, readOnly, disabled }}>
-      <span role={'radiogroup'} style={{ position: 'relative', ...style }} className={className}>
-        {typeof title === 'string' ? <h3>{title}</h3> : title}
-        {children}
-        {showError && typeof error === 'string' ? (
+    <span role={'radiogroup'} style={{ position: 'relative', ...style }} className={className}>
+      {typeof title === 'string' ? <h3>{title}</h3> : title}
+      {React.Children.map(children, (child) => {
+        const renderer = child as React.FC<RadioGroupItemProps>;
+        return React.isValidElement(renderer)
+          ? React.cloneElement(renderer, {
+              selectedValues,
+              onToggle,
+              clearable,
+              readOnly,
+              disabled,
+            } as RadioGroupItemProps)
+          : null;
+      })}
+      {showError &&
+        (typeof error === 'string' ? (
           <span style={{ position: 'absolute', top: '100%', left: 0 }}>{error}</span>
         ) : (
           error
-        )}
-      </span>
-    </RadioGroupContext>
+        ))}
+    </span>
   );
 };
 
-const RadioGroupItem: React.FC<RadioInputProps> = (props: RadioInputProps) => {
-  const { selectedValues, onToggle, clearable, readOnly, disabled } = useContext(RadioGroupContext);
-  const uniqueId = useMemo(() => props.id ?? `radio-${crypto.randomUUID()}`, [props.id]);
+interface RadioGroupItemProps extends RadioInputProps {
+  selectedValues?: string[] | null;
+  onToggle?: (value: string) => void;
+  clearable?: boolean;
+  readOnly?: boolean;
+  disabled?: boolean;
+}
+
+const RadioGroupItem: React.FC<RadioGroupItemProps> = ({
+  selectedValues,
+  onToggle,
+  clearable,
+  readOnly,
+  disabled,
+  ...restProps
+}: RadioGroupItemProps) => {
+  const uniqueId = useMemo(() => restProps.id ?? `radio-${crypto.randomUUID()}`, [restProps.id]);
 
   return (
     <RadioInput
-      {...props}
+      {...restProps}
+      clearable={clearable}
       readOnly={readOnly}
       disabled={disabled}
       id={uniqueId}
       checked={selectedValues?.includes(uniqueId)}
-      onChange={(e) => {
+      onToggle={(e) => {
         if (readOnly || disabled) return;
-        onToggle(e.target.id);
+        onToggle?.(e.target.id);
       }}
     />
   );

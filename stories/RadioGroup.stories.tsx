@@ -13,93 +13,71 @@ const meta: Meta<typeof RadioGroup> = {
 export default meta;
 
 export const Default = {
-  args: {
-    title: <div>Radio Group</div>,
-    children: (
-      <>
-        <RadioGroup.Item>1</RadioGroup.Item>
-        <RadioGroup.Item>2</RadioGroup.Item>
-        <RadioGroup.Item>3</RadioGroup.Item>
-      </>
-    ),
-  },
+  render: () => (
+    <RadioGroup>
+      <RadioGroup.Item>1</RadioGroup.Item>
+      <RadioGroup.Item>2</RadioGroup.Item>
+      <RadioGroup.Item>3</RadioGroup.Item>
+    </RadioGroup>
+  ),
 };
 
 export const MultiSelect = {
-  args: {
-    children: (
-      <>
-        <RadioGroup.Item>1</RadioGroup.Item>
-        <RadioGroup.Item>2</RadioGroup.Item>
-        <RadioGroup.Item>3</RadioGroup.Item>
-      </>
-    ),
-    allowMultiSelect: true,
-  },
+  render: () => (
+    <RadioGroup allowMultiSelect>
+      <RadioGroup.Item>1</RadioGroup.Item>
+      <RadioGroup.Item>2</RadioGroup.Item>
+      <RadioGroup.Item>3</RadioGroup.Item>
+    </RadioGroup>
+  ),
 };
 
 export const Clearable = {
-  args: {
-    children: (
-      <>
-        <RadioGroup.Item>1</RadioGroup.Item>
-        <RadioGroup.Item>2</RadioGroup.Item>
-        <RadioGroup.Item>3</RadioGroup.Item>
-      </>
-    ),
-    clearable: true,
-  },
+  render: () => (
+    <RadioGroup clearable>
+      <RadioGroup.Item>1</RadioGroup.Item>
+      <RadioGroup.Item>2</RadioGroup.Item>
+      <RadioGroup.Item>3</RadioGroup.Item>
+    </RadioGroup>
+  ),
 };
 
 export const MultiSelectClearable = {
-  args: {
-    children: (
-      <>
-        <RadioGroup.Item>1</RadioGroup.Item>
-        <RadioGroup.Item>2</RadioGroup.Item>
-        <RadioGroup.Item>3</RadioGroup.Item>
-      </>
-    ),
-    clearable: true,
-    allowMultiSelect: true,
-  },
+  render: () => (
+    <RadioGroup clearable allowMultiSelect>
+      <RadioGroup.Item>1</RadioGroup.Item>
+      <RadioGroup.Item>2</RadioGroup.Item>
+      <RadioGroup.Item>3</RadioGroup.Item>
+    </RadioGroup>
+  ),
 };
 
 export const ReadOnly = {
-  args: {
-    children: (
-      <>
-        <RadioGroup.Item>1</RadioGroup.Item>
-        <RadioGroup.Item>2</RadioGroup.Item>
-        <RadioGroup.Item>3</RadioGroup.Item>
-      </>
-    ),
-    readOnly: true,
-  },
+  render: () => (
+    <RadioGroup readOnly>
+      <RadioGroup.Item>1</RadioGroup.Item>
+      <RadioGroup.Item>2</RadioGroup.Item>
+      <RadioGroup.Item>3</RadioGroup.Item>
+    </RadioGroup>
+  ),
 };
 
 export const Disabled = {
-  args: {
-    children: (
-      <>
-        <RadioGroup.Item>1</RadioGroup.Item>
-        <RadioGroup.Item>2</RadioGroup.Item>
-        <RadioGroup.Item>3</RadioGroup.Item>
-      </>
-    ),
-    disabled: true,
-  },
+  render: () => (
+    <RadioGroup disabled>
+      <RadioGroup.Item>1</RadioGroup.Item>
+      <RadioGroup.Item>2</RadioGroup.Item>
+      <RadioGroup.Item>3</RadioGroup.Item>
+    </RadioGroup>
+  ),
 };
 
 export const WithErrorMsg = {
-  args: {
-    children: (
-      <>
-        <RadioGroup.Item>1</RadioGroup.Item>
-        <RadioGroup.Item>2</RadioGroup.Item>
-        <RadioGroup.Item>3</RadioGroup.Item>
-      </>
-    ),
-    error: <div style={{ color: 'red' }}>this field is required</div>,
-  },
+  render: () => (
+    <RadioGroup showError error={<div style={{ color: 'red' }}>this field is required</div>}>
+      <RadioGroup.Item>1</RadioGroup.Item>
+      <RadioGroup.Item>2</RadioGroup.Item>
+      <RadioGroup.Item>3</RadioGroup.Item>
+    </RadioGroup>
+  ),
 };
