@@ -3,7 +3,7 @@ import React from 'react';
 
 const HomeIcon: React.FC<IconProps> = ({
   color = '#000',
-  size = '20px',
+  size = '1em',
   bgColor = 'transparent',
   fill = 'none',
 }: IconProps) => {

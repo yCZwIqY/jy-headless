@@ -23,7 +23,7 @@ export const Default: StoryObj<typeof Input> = {
 
 export const WithPrefix: StoryObj<typeof Input> = {
   args: {
-    prefixElement: <CallIcon size={'20px'} />,
+    prefixElement: <CallIcon />,
     containerStyle: {
       outline: '1px solid black',
       borderRadius: '2px',
@@ -34,11 +34,24 @@ export const WithPrefix: StoryObj<typeof Input> = {
 
 export const WithSuffix: StoryObj<typeof Input> = {
   args: {
-    suffixElement: <CloseIcon size={'20px'} />,
+    suffixElement: <CloseIcon />,
     containerStyle: {
       outline: '1px solid black',
       borderRadius: '2px',
       padding: '2px',
     },
+  },
+};
+
+export const WithErrorMsg: StoryObj<typeof Input> = {
+  args: {
+    suffixElement: <CloseIcon />,
+    containerStyle: {
+      outline: '1px solid red',
+      borderRadius: '2px',
+      padding: '2px',
+    },
+    showError: true,
+    error: <div style={{ color: 'red' }}>this field is required</div>,
   },
 };

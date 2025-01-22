@@ -6,6 +6,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   containerClassName?: string;
   prefixElement?: ReactNode;
   suffixElement?: ReactNode;
+  showError?: boolean;
+  error?: ReactNode;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -15,17 +17,17 @@ const Input: React.FC<InputProps> = ({
   style,
   containerStyle,
   containerClassName,
+  showError = false,
+  error,
   ...restProps
 }) => {
   return (
     <span
       className={containerClassName}
       style={{
+        position: 'relative',
         display: 'inline-flex',
-        justifyContent: 'space-between',
         alignItems: 'center',
-        paddingRight: '4px',
-        paddingLeft: '4px',
         ...containerStyle,
       }}
     >
@@ -34,13 +36,12 @@ const Input: React.FC<InputProps> = ({
         {...restProps}
         className={className}
         style={{
-          outline: 'none',
-          border: 'none',
-          flex: 1,
+          all: 'unset',
           ...style,
         }}
       />
       {suffixElement}
+      {showError && <div style={{ position: 'absolute', top: '100%' }}>{error}</div>}
     </span>
   );
 };

@@ -3,7 +3,7 @@ import React from 'react';
 
 const CloseIcon: React.FC<IconProps> = ({
   color = '#000',
-  size = '20px',
+  size = '1em',
   bgColor = 'transparent',
 }: IconProps) => {
   return (

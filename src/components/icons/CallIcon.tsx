@@ -3,7 +3,7 @@ import React from 'react';
 
 const CallIcon = ({
   color = '#000',
-  size = '20px',
+  size = '1em',
   bgColor = 'transparent',
   fill = 'none',
 }: IconProps) => {

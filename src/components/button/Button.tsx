@@ -18,7 +18,14 @@ const Button: React.FC<ButtonProps> = ({
   ...restProps
 }) => {
   return (
-    <button {...restProps}>
+    <button
+      {...restProps}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        ...style,
+      }}
+    >
       {prefixElement}
       {loading ? spinner : children}
       {suffixElement}
