@@ -4,7 +4,7 @@ import Input from '../src/components/input/Input';
 import { CallIcon, CloseIcon } from '../src/components/icons';
 
 const meta: Meta<typeof Input> = {
-  title: 'Input',
+  title: 'Common/Input',
   component: Input,
   layout: 'centered',
 } as StoryObj<typeof Input>;

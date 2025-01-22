@@ -1,6 +1,6 @@
 {
   "name": "jy-headless",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "",
   "main": "dist/index.cjs",
   "typings": "dist/index.d.ts",

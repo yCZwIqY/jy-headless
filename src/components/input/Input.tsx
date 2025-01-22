@@ -7,7 +7,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   prefixElement?: ReactNode;
   suffixElement?: ReactNode;
   showError?: boolean;
-  error?: ReactNode;
+  error?: ReactNode | string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -41,7 +41,11 @@ const Input: React.FC<InputProps> = ({
         }}
       />
       {suffixElement}
-      {showError && <div style={{ position: 'absolute', top: '100%' }}>{error}</div>}
+      {showError && typeof error === 'string' ? (
+        <span style={{ position: 'absolute', top: '100%', left: 0 }}>{error}</span>
+      ) : (
+        error
+      )}
     </span>
   );
 };

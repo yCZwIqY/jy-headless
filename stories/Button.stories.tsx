@@ -5,7 +5,7 @@ import { HomeIcon } from '../src/components/icons';
 import SearchIcon from '../src/components/icons/SearchIcon';
 
 const meta: Meta<typeof Button> = {
-  title: 'Button',
+  title: 'Common/Button',
   component: Button,
   layout: ['centered'],
 } as StoryObj<typeof Button>;
