@@ -1,7 +1,7 @@
 import { IconProps } from './index';
 import React from 'react';
 
-const CallIcon: React.FC<IconProps> = ({
+const CallIcon = ({
   color = '#000',
   size = '20px',
   bgColor = 'transparent',

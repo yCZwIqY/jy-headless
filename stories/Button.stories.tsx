@@ -27,14 +27,14 @@ export const Loading = {
 
 export const WithPrefix = {
   args: {
-    prefixElement: <HomeIcon size={'20px'} />,
+    prefixElement: <HomeIcon />,
     children: 'Home',
   },
 };
 
 export const WithSuffix = {
   args: {
-    suffixElement: <SearchIcon size={'20px'} />,
+    suffixElement: <SearchIcon />,
     children: 'Search',
   },
 };
