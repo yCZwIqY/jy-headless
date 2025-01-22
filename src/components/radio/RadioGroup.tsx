@@ -61,7 +61,7 @@ const RadioGroup: React.FC<RadioGroupProps> & ItemComposition = ({
     <span role={'radiogroup'} style={{ position: 'relative', ...style }} className={className}>
       {typeof title === 'string' ? <h3>{title}</h3> : title}
       {React.Children.map(children, (child) => {
-        const renderer = child as React.FC<RadioGroupItemProps>;
+        const renderer = child as ReactNode;
         return React.isValidElement(renderer)
           ? React.cloneElement(renderer, {
               selectedValues,
