@@ -32,7 +32,7 @@ const Accordion: React.FC<AccordionProps> & AccordionComposition = ({
   );
 };
 
-interface SummaryProps extends HTMLAttributes<HTMLDetailsElement> {
+interface SummaryProps extends HTMLAttributes<HTMLDivElement> {
   icon?: ReactNode;
 }
 
@@ -45,7 +45,7 @@ const AccordionSummary = ({ icon = <DownArrowIcon />, children, ...restProps }: 
   );
 };
 
-interface DetailProps extends HTMLAttributes<HTMLDetailsElement> {}
+interface DetailProps extends HTMLAttributes<HTMLDivElement> {}
 
 const AccordionDetail = ({ children, ...restProps }: DetailProps) => {
   return <div {...restProps}>{children}</div>;
