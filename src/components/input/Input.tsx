@@ -1,6 +1,6 @@
 import React, { CSSProperties, InputHTMLAttributes, ReactNode } from 'react';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   clearable?: boolean;
   containerStyle?: CSSProperties;
   containerClassName?: string;
