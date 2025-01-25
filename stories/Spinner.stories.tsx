@@ -13,6 +13,6 @@ export default meta;
 
 export const Default = {
   args: {
-    size: '20px',
+    // tabs: ,
   },
 };
