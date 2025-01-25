@@ -1,6 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Button from './Button'; // Button 컴포넌트 파일 경로에 맞게 수정
-import Spinner from '../spinner/Spinner';
 import { expect } from '@storybook/test'; // Spinner 컴포넌트 파일 경로에 맞게 수정
 
 describe('Button component', () => {

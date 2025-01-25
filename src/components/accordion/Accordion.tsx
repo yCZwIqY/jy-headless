@@ -21,10 +21,12 @@ const Accordion: React.FC<AccordionProps> & AccordionComposition = ({
 }: AccordionProps) => {
   return (
     <details
+      data-testid="accordion"
       open={isOpen}
       {...restProps}
       onToggle={(e) => {
-        setIsOpen(e.newState === 'open');
+        const newState = (e.target as HTMLDetailsElement).open;
+        setIsOpen(newState);
       }}
     >
       {children}
@@ -36,7 +38,11 @@ interface SummaryProps extends HTMLAttributes<HTMLDivElement> {
   icon?: ReactNode;
 }
 
-const AccordionSummary = ({ icon = <DownArrowIcon />, children, ...restProps }: SummaryProps) => {
+const AccordionSummary: React.FC<SummaryProps> = ({
+  icon = <DownArrowIcon />,
+  children,
+  ...restProps
+}: SummaryProps) => {
   return (
     <summary style={{ all: 'unset' }} {...restProps}>
       {icon}
@@ -47,7 +53,7 @@ const AccordionSummary = ({ icon = <DownArrowIcon />, children, ...restProps }: 
 
 interface DetailProps extends HTMLAttributes<HTMLDivElement> {}
 
-const AccordionDetail = ({ children, ...restProps }: DetailProps) => {
+const AccordionDetail: React.FC<DetailProps> = ({ children, ...restProps }: DetailProps) => {
   return <div {...restProps}>{children}</div>;
 };
 

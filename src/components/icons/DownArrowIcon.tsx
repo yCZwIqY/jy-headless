@@ -9,6 +9,7 @@ const DownArrowIcon = ({
 }: IconProps) => {
   return (
     <svg
+      data-testid={'down-arrow-icon'}
       width={size}
       height={size}
       fill={color}
