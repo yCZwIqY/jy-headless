@@ -5,42 +5,55 @@ import RadioInput from '../src/components/radio/RadioInput';
 const meta: Meta<typeof RadioInput> = {
   title: 'Common/Radio/RadioInput',
   component: RadioInput,
-  layout: ['centered'],
-} as StoryObj<typeof RadioInput>;
-
-export default meta;
-
-export const Default = {
-  args: {
-    children: 'label',
+  parameters: {
+    layout: 'centered',
   },
 };
 
-export const Clearable = {
+export default meta;
+
+export const Default: StoryObj<typeof RadioInput> = {
   args: {
-    children: 'label',
+    children: 'Default Label',
+  },
+};
+
+export const Clearable: StoryObj<typeof RadioInput> = {
+  args: {
+    children: 'Clearable Label',
     clearable: true,
   },
 };
 
-export const ReadOnly = {
+export const ReadOnly: StoryObj<typeof RadioInput> = {
   args: {
-    children: 'label',
+    children: 'Read-Only Label',
     readOnly: true,
   },
 };
 
-export const Disabled = {
+export const Disabled: StoryObj<typeof RadioInput> = {
   args: {
-    children: 'label',
+    children: 'Disabled Label',
     disabled: true,
   },
 };
 
-export const WithErrorMsg = {
+export const WithErrorMsg: StoryObj<typeof RadioInput> = {
   args: {
-    children: 'label',
+    children: 'Label with Error',
     showError: true,
-    error: <div style={{ color: 'red' }}>this field is required</div>,
+    error: (
+      <div
+        style={{
+          marginTop: '8px',
+          color: 'red',
+          fontSize: '14px',
+          fontWeight: 'bold',
+        }}
+      >
+        This field is required.
+      </div>
+    ),
   },
 };

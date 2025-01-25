@@ -4,7 +4,9 @@ import Spinner from '../src/components/spinner/Spinner';
 const meta: Meta<typeof Spinner> = {
   title: 'Common/Others/Spinner',
   component: Spinner,
-  layout: ['centered'],
+  parameters: {
+    layout: 'centered',
+  },
 } as StoryObj<typeof Spinner>;
 
 export default meta;

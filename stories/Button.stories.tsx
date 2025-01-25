@@ -4,16 +4,15 @@ import Button from '../src/components/button/Button';
 import Spinner from '../src/components/spinner/Spinner';
 
 const meta: Meta<typeof Button> = {
-  title: 'Common/Button',
+  title: 'Common/Button/Button',
   component: Button,
+  parameters: {
+    layout: 'centered',
+  },
   argTypes: {
     loading: {
       control: 'boolean',
       description: 'Whether the button is in a loading state',
-    },
-    spinner: {
-      control: 'text',
-      description: 'Custom spinner element to show when loading',
     },
     prefixElement: {
       control: 'text',
