@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import Spinner from '../spinner/Spinner';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   spinner?: ReactNode;
   prefixElement?: ReactNode;
