@@ -4,7 +4,7 @@ import Input from '../src/components/input/Input';
 import { CallIcon, CloseIcon } from '../src/components/icons';
 
 const meta: Meta<typeof Input> = {
-  title: 'Common/Input',
+  title: 'Common/Input/Input',
   component: Input,
   layout: 'centered',
 } as StoryObj<typeof Input>;
@@ -52,6 +52,8 @@ export const WithErrorMsg: StoryObj<typeof Input> = {
       padding: '2px',
     },
     showError: true,
-    error: <div style={{ color: 'red' }}>this field is required</div>,
+    error: (
+      <div style={{ color: 'red', position: 'absolute', top: '100%' }}>this field is required</div>
+    ),
   },
 };

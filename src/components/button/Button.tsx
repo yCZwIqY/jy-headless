@@ -13,7 +13,7 @@ const Button: React.FC<ButtonProps> = ({
   suffixElement,
   children,
   loading = false,
-  spinner = <Spinner color={'black'} size={'9px'} />,
+  spinner = <Spinner color={'black'} size={'1em'} />,
   style,
   ...restProps
 }) => {

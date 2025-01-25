@@ -4,7 +4,7 @@ import RadioGroup from '../src/components/radio/RadioGroup';
 import { fn } from '@storybook/test';
 
 const meta: Meta<typeof RadioGroup> = {
-  title: 'Radio/RadioGroup',
+  title: 'Common/Radio/RadioGroup',
   component: RadioGroup,
   layout: ['centered'],
   args: { onClick: fn() },
