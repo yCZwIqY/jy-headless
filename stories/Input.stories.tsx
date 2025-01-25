@@ -18,6 +18,8 @@ export const Default: StoryObj<typeof Input> = {
       borderRadius: '2px',
       padding: '2px',
     },
+    maxLength: 20,
+    showLimit: true,
   },
 };
 

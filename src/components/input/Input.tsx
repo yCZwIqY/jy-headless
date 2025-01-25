@@ -1,7 +1,7 @@
-import React, { CSSProperties, InputHTMLAttributes, ReactNode } from 'react';
+import React, { CSSProperties, InputHTMLAttributes, ReactNode, useState } from 'react';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  clearable?: boolean;
+  showLimit: boolean;
   containerStyle?: CSSProperties;
   containerClassName?: string;
   prefixElement?: ReactNode;
@@ -19,8 +19,16 @@ const Input: React.FC<InputProps> = ({
   containerClassName,
   showError = false,
   error,
+  maxLength,
+  showLimit = false,
   ...restProps
 }) => {
+  const [inputValue, setInputValue] = useState(restProps.value);
+
+  const onChange = (e) => {
+    setInputValue(e.target.value);
+    restProps.onChange(e);
+  };
   return (
     <span
       className={containerClassName}
@@ -34,16 +42,26 @@ const Input: React.FC<InputProps> = ({
       {prefixElement}
       <input
         {...restProps}
+        value={inputValue}
+        onChange={onChange}
+        maxLength={maxLength}
         className={className}
         style={{
           all: 'unset',
           ...style,
         }}
       />
+      {showLimit && maxLength && (
+        <span className={'max-length'}>
+          {(inputValue ?? '').toString().length ?? 0}/{maxLength}
+        </span>
+      )}
       {suffixElement}
       {showError &&
         (typeof error === 'string' ? (
-          <span style={{ position: 'absolute', top: '100%', left: 0 }}>{error}</span>
+          <span className={'error-message'} style={{ position: 'absolute', top: '100%', left: 0 }}>
+            {error}
+          </span>
         ) : (
           error
         ))}
