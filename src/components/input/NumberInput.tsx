@@ -1,10 +1,4 @@
-import React, {
-  CSSProperties,
-  DetailedReactHTMLElement,
-  InputHTMLAttributes,
-  ReactNode,
-  useState,
-} from 'react';
+import React, { ChangeEvent, DetailedReactHTMLElement, ReactNode } from 'react';
 import Input, { InputProps } from './Input';
 import UpArrowIcon from '../icons/UpArrowIcon';
 import DownArrowIcon from '../icons/DownArrowIcon';
@@ -21,30 +15,53 @@ const NumberInput: React.FC<NumberInputProps> = ({
   increaseElement = <UpArrowIcon />,
   decreaseElement = <DownArrowIcon />,
   step = 1,
-  min,
-  max,
+  min = -Infinity,
+  max = Infinity,
   value,
   onChange,
   ...restProps
 }) => {
   const onNumberInput = (e) => {
-    if (isNaN(Number(e.target.value))) {
+    const newValue = Number(e.target.value);
+    if (isNaN(newValue)) {
       return;
     }
 
-    onChange(e.toString.value);
+    onChange({
+      ...e,
+      target: {
+        ...e.target,
+        value: newValue.toString(),
+      },
+    });
+  };
+
+  const onNumberChange = (dir) => {
+    if (isNaN(value as number)) {
+      onChange(null);
+      return;
+    }
+    let newValue = ((value ?? 0) as number) + dir * (step || 1);
+
+    if (newValue > max) newValue = max;
+    if (newValue < min) newValue = min;
+
+    const event = {
+      target: {
+        ...({} as HTMLInputElement),
+        value: newValue.toString(),
+      },
+    } as any;
+
+    onChange(event);
   };
 
   const onIncrease = () => {
-    if (!max || value + step <= max) {
-      onChange(value + step);
-    }
+    onNumberChange(1);
   };
 
   const onDecrease = () => {
-    if (!min || value - step >= min) {
-      onChange(value - step);
-    }
+    onNumberChange(-1);
   };
 
   return (
