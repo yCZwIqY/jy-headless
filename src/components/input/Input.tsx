@@ -1,7 +1,7 @@
 import React, { CSSProperties, InputHTMLAttributes, ReactNode, useState } from 'react';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  showLimit: boolean;
+  showLimit?: boolean;
   containerStyle?: CSSProperties;
   containerClassName?: string;
   prefixElement?: ReactNode;
