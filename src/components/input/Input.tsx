@@ -23,10 +23,8 @@ const Input: React.FC<InputProps> = ({
   showLimit = false,
   ...restProps
 }) => {
-  const [inputValue, setInputValue] = useState(restProps.value);
-
   const onChange = (e) => {
-    setInputValue(e.target.value);
+    console.log(e.target.value);
     restProps.onChange(e);
   };
   return (
@@ -42,7 +40,7 @@ const Input: React.FC<InputProps> = ({
       {prefixElement}
       <input
         {...restProps}
-        value={inputValue}
+        value={restProps.value}
         onChange={onChange}
         maxLength={maxLength}
         className={className}
@@ -53,7 +51,7 @@ const Input: React.FC<InputProps> = ({
       />
       {showLimit && maxLength && (
         <span className={'max-length'}>
-          {(inputValue ?? '').toString().length ?? 0}/{maxLength}
+          {(restProps.value ?? '').toString().length ?? 0}/{maxLength}
         </span>
       )}
       {suffixElement}

@@ -1,6 +1,5 @@
 import Button from './components/button/Button';
 import Input from './components/input/Input';
-import NumberInput from './components/input/NumberInput';
 import DesktopKeyboardInput from './components/input/DesktopKeyboardInput';
 import Spinner from './components/spinner/Spinner';
 import RadioInput from './components/radio/RadioInput';
@@ -20,5 +19,4 @@ export {
   RadioInput,
   RadioGroup,
   Modal,
-  NumberInput,
 };

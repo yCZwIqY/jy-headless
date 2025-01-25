@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import Input from '../src/components/input/Input';
 
@@ -47,6 +47,15 @@ export const Default: Story = {
     placeholder: 'Type something...',
     maxLength: 20,
   },
+  render: (args) => {
+    const [value, setValue] = useState(args.value);
+
+    const handleChange = (e) => {
+      setValue(e.target.value);
+    };
+
+    return <Input {...args} value={value} onChange={handleChange} />;
+  },
 };
 
 export const WithPrefixAndSuffix: Story = {
@@ -57,6 +66,15 @@ export const WithPrefixAndSuffix: Story = {
     showLimit: true,
     maxLength: 10,
   },
+  render: (args) => {
+    const [value, setValue] = useState(args.value);
+
+    const handleChange = (e) => {
+      setValue(e.target.value);
+    };
+
+    return <Input {...args} value={value} onChange={handleChange} />;
+  },
 };
 
 export const WithError: Story = {
@@ -64,6 +82,15 @@ export const WithError: Story = {
     placeholder: 'Enter your email',
     showError: true,
     error: 'Invalid email address',
+  },
+  render: (args) => {
+    const [value, setValue] = useState(args.value);
+
+    const handleChange = (e) => {
+      setValue(e.target.value);
+    };
+
+    return <Input {...args} value={value} onChange={handleChange} />;
   },
 };
 
@@ -73,6 +100,15 @@ export const WithLimit: Story = {
     maxLength: 30,
     showLimit: true,
   },
+  render: (args) => {
+    const [value, setValue] = useState(args.value);
+
+    const handleChange = (e) => {
+      setValue(e.target.value);
+    };
+
+    return <Input {...args} value={value} onChange={handleChange} />;
+  },
 };
 
 export const CustomStyled: Story = {
@@ -80,5 +116,14 @@ export const CustomStyled: Story = {
     placeholder: 'Custom styled input',
     containerStyle: { border: '1px solid #007BFF', padding: '8px', borderRadius: '8px' },
     style: { padding: '4px', width: '100%' },
+  },
+  render: (args) => {
+    const [value, setValue] = useState(args.value);
+
+    const handleChange = (e) => {
+      setValue(e.target.value);
+    };
+
+    return <Input {...args} value={value} onChange={handleChange} />;
   },
 };
