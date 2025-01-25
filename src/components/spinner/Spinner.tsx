@@ -24,6 +24,7 @@ const Spinner: React.FC<SpinnerProps> = ({ color = 'black', size = '1em', spinTi
     <>
       <Spin />
       <svg
+        data-testid="spinner"
         style={{ animation: `spin ${spinTime} 0s linear infinite` }}
         viewBox="0 0 20 20"
         version="1.1"
