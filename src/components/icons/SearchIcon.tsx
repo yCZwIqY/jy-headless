@@ -1,7 +1,7 @@
 import { IconProps } from './index';
 import React from 'react';
 
-const SearchIcon: React.FC<IconProps> = ({
+const SearchIcon = ({
   color = '#000',
   size = '1em',
   bgColor = 'transparent',

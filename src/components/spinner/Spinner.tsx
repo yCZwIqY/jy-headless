@@ -19,7 +19,7 @@ const Spin = () => (
 `}</style>
 );
 
-const Spinner: React.FC<SpinnerProps> = ({ color = 'black', size = '1em', spinTime = '2s' }) => {
+const Spinner = ({ color = 'black', size = '1em', spinTime = '2s' }: SpinnerProps) => {
   return (
     <>
       <Spin />

@@ -7,7 +7,7 @@ export interface RadioInputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: ReactNode | string;
 }
 
-const RadioInput: React.FC<RadioInputProps> = ({
+const RadioInput = ({
   clearable = false,
   children = '',
   checked = false,

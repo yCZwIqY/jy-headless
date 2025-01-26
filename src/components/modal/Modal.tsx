@@ -15,16 +15,7 @@ interface ModalProps {
   targetSelector?: string;
 }
 
-interface ModalComposition {
-  Overlay?: React.FC<ModalOverlayProps>;
-  Closer?: React.FC<ButtonProps>;
-}
-
-const Modal: React.FC<ModalProps> & ModalComposition = ({
-  opener,
-  children,
-  targetSelector = '#root',
-}: ModalProps) => {
+const Modal = ({ opener, children, targetSelector = '#root' }: ModalProps) => {
   const [isShow, setIsShow] = useState<boolean>(false);
 
   const onHandleShow = () => {

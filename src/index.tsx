@@ -5,6 +5,9 @@ import Spinner from './components/spinner/Spinner';
 import RadioInput from './components/radio/RadioInput';
 import RadioGroup from './components/radio/RadioGroup';
 import Modal from './components/modal/Modal';
+import Tab from './components/tabs/Tab';
+import Accordion from './components/accordion/Accordion';
+
 import { CallIcon, CloseIcon, HomeIcon, SearchIcon } from './components/icons';
 
 export {
@@ -19,4 +22,6 @@ export {
   RadioInput,
   RadioGroup,
   Modal,
+  Tab,
+  Accordion,
 };

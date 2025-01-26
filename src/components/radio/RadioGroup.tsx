@@ -1,10 +1,6 @@
 import React, { CSSProperties, ReactNode, useMemo, useState } from 'react';
 import RadioInput, { RadioInputProps } from './RadioInput';
 
-export interface ItemComposition {
-  Item?: React.FC<RadioGroupItemProps>;
-}
-
 export interface RadioGroupProps {
   children: ReactNode;
   value?: string[];
@@ -20,7 +16,7 @@ export interface RadioGroupProps {
   error?: ReactNode | string;
 }
 
-const RadioGroup: React.FC<RadioGroupProps> & ItemComposition = ({
+const RadioGroup = ({
   title,
   style,
   className,
@@ -90,7 +86,7 @@ interface RadioGroupItemProps extends RadioInputProps {
   disabled?: boolean;
 }
 
-const RadioGroupItem: React.FC<RadioGroupItemProps> = ({
+const RadioGroupItem = ({
   selectedValues,
   onToggle,
   clearable,

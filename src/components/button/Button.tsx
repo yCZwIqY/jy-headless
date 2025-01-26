@@ -8,7 +8,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   suffixElement?: ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   prefixElement,
   suffixElement,
   children,
@@ -16,7 +16,7 @@ const Button: React.FC<ButtonProps> = ({
   spinner = <Spinner color={'black'} size={'1em'} />,
   style,
   ...restProps
-}) => {
+}: ButtonProps) => {
   return (
     <button
       {...restProps}

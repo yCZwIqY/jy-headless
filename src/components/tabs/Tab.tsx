@@ -6,16 +6,7 @@ interface TabProps extends HTMLAttributes<HTMLDivElement> {
   onChangeTab: (id: string) => void;
 }
 
-interface TabComposition {
-  Item?: React.FC<TabItemProps>;
-}
-
-const Tab: React.FC<TabProps> & TabComposition = ({
-  children,
-  currentTab,
-  onChangeTab,
-  ...restProps
-}: TabProps) => {
+const Tab = ({ children, currentTab, onChangeTab, ...restProps }: TabProps) => {
   return (
     <div {...restProps}>
       <TabContext.Provider

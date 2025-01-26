@@ -10,7 +10,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: ReactNode | string;
 }
 
-const Input: React.FC<InputProps> = ({
+const Input = ({
   prefixElement,
   suffixElement,
   className,
@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = ({
   maxLength,
   showLimit = false,
   ...restProps
-}) => {
+}: InputProps) => {
   return (
     <span
       className={containerClassName}

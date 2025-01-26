@@ -1,7 +1,7 @@
 import { IconProps } from './index';
 import React from 'react';
 
-const HomeIcon: React.FC<IconProps> = ({
+const HomeIcon = ({
   color = '#000',
   size = '1em',
   bgColor = 'transparent',

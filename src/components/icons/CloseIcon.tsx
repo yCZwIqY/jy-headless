@@ -1,11 +1,7 @@
 import { IconProps } from './index';
 import React from 'react';
 
-const CloseIcon: React.FC<IconProps> = ({
-  color = '#000',
-  size = '1em',
-  bgColor = 'transparent',
-}: IconProps) => {
+const CloseIcon = ({ color = '#000', size = '1em', bgColor = 'transparent' }: IconProps) => {
   return (
     <svg
       viewBox="0 0 24 24"
