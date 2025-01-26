@@ -1,6 +1,6 @@
 {
   "name": "jy-headless",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A lightweight and customizable headless UI library for React components",
   "main": "dist/index.cjs",
   "typings": "dist/index.d.ts",

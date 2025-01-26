@@ -20,11 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pnpm install
+          npm install
 
       - name: Build Storybook
         run: |
-          pnpm run build-storybook  # `storybook build` 명령어 실행
+          npm run build-storybook  # `storybook build` 명령어 실행
 
       - name: Deploy to Chromatic
         env:
