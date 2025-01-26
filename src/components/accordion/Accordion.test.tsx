@@ -1,5 +1,4 @@
-// Accordion.test.tsx
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Accordion from './Accordion';
 import DownArrowIcon from '../icons/DownArrowIcon';
 import { expect, userEvent } from '@storybook/test';

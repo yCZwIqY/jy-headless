@@ -23,10 +23,6 @@ const Input: React.FC<InputProps> = ({
   showLimit = false,
   ...restProps
 }) => {
-  const onChange = (e) => {
-    console.log(e.target.value);
-    restProps.onChange(e);
-  };
   return (
     <span
       className={containerClassName}
@@ -40,8 +36,8 @@ const Input: React.FC<InputProps> = ({
       {prefixElement}
       <input
         {...restProps}
+        role={'textbox'}
         value={restProps.value}
-        onChange={onChange}
         maxLength={maxLength}
         className={className}
         style={{
