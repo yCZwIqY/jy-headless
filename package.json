@@ -1,10 +1,11 @@
 {
   "name": "jy-headless",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.1.1",
+  "description": "A lightweight and customizable headless UI library for React components",
   "main": "dist/index.cjs",
   "typings": "dist/index.d.ts",
   "module": "dist/index.esm.js",
+  "repository": "https://github.com/yCZwIqY/jy-headless",
   "scripts": {
     "build": " rollup -c",
     "storybook": "storybook dev -p 6006",
@@ -22,7 +23,12 @@
     "import": "./dist/index.esm.js",
     "require": "./dist/index.cjs"
   },
-  "keywords": [],
+  "keywords": [ "react",
+    "headless-ui",
+    "react-components",
+    "ui-library",
+    "tailwind",
+    "storybook"],
   "author": "",
   "license": "ISC",
   "type": "module",

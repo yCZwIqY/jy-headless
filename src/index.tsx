@@ -7,8 +7,16 @@ import RadioGroup from './components/radio/RadioGroup';
 import Modal from './components/modal/Modal';
 import Tab from './components/tabs/Tab';
 import Accordion from './components/accordion/Accordion';
+import Dropdown from './components/dropdown/Dropdown';
 
-import { CallIcon, CloseIcon, HomeIcon, SearchIcon } from './components/icons';
+import {
+  CallIcon,
+  CloseIcon,
+  DownArrowIcon,
+  HomeIcon,
+  SearchIcon,
+  UpArrowIcon,
+} from './components/icons';
 
 export {
   Button,
@@ -19,9 +27,12 @@ export {
   CloseIcon,
   HomeIcon,
   SearchIcon,
+  DownArrowIcon,
+  UpArrowIcon,
   RadioInput,
   RadioGroup,
   Modal,
   Tab,
   Accordion,
+  Dropdown,
 };
