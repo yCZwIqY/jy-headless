@@ -287,7 +287,7 @@ const DesktopKeyboardInput = ({
 
   return (
     <div style={style} className={className}>
-      {(['full-size', 'tenkeyless'].includes(type) || hasFunction) && (
+      {['full-size', 'tenkeyless'].includes(type) && hasFunction && (
         <div style={{ display: 'grid', gridTemplateColumns: `repeat(20, 1fr)`, gap: '2px' }}>
           {renderRow(functionRow.flat(), 'function')}
         </div>

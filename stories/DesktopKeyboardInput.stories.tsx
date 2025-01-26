@@ -40,3 +40,22 @@ export const Default: Story = {
     },
   },
 };
+
+export const WithoutFunctionKeys: Story = {
+  args: {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '2px',
+    },
+    cellStyle: cellStyle,
+    activeCellStyle: {
+      ...cellStyle,
+      backgroundColor: 'darkgrey',
+    },
+    hasFunction: false,
+    onKeyUp: (e) => {
+      console.log(e);
+    },
+  },
+};
