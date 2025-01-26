@@ -59,3 +59,74 @@ export const WithoutFunctionKeys: Story = {
     },
   },
 };
+
+export const RoundedStyle: Story = {
+  args: {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '2px',
+    },
+    cellStyle: {
+      height: '45px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: '25px', // 둥근 모서리 스타일
+      backgroundColor: 'lightblue',
+      padding: '3px',
+      textAlign: 'center',
+      fontSize: '11px',
+    },
+    activeCellStyle: {
+      height: '45px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: '25px', // 둥근 모서리 스타일
+      backgroundColor: 'darkblue',
+      padding: '3px',
+      textAlign: 'center',
+      fontSize: '11px',
+      color: 'white',
+    },
+    onKeyUp: (e) => {
+      console.log(e);
+    },
+  },
+};
+
+export const SquareStyle: Story = {
+  args: {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '2px',
+    },
+    cellStyle: {
+      height: '45px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: '0', // 직선 모서리 스타일
+      backgroundColor: 'lightgreen',
+      padding: '3px',
+      textAlign: 'center',
+      fontSize: '11px',
+    },
+    activeCellStyle: {
+      height: '45px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: '0', // 직선 모서리 스타일
+      backgroundColor: 'darkgreen',
+      padding: '3px',
+      textAlign: 'center',
+      fontSize: '11px',
+    },
+    onKeyUp: (e) => {
+      console.log(e);
+    },
+  },
+};

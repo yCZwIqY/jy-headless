@@ -1,11 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Dropdown from '../src/components/dropdown/Dropdown';
 import React, { useState } from 'react';
-import Input from '../src/components/input/Input';
 import DownArrowIcon from '../src/components/icons/DownArrowIcon';
 
 const meta: Meta<typeof Dropdown> = {
-  title: 'Common/input/Dropdown',
+  title: 'Common/Dropdown/Dropdown',
   component: Dropdown,
   parameters: {
     layout: 'centered',
