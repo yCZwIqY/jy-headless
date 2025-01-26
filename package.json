@@ -9,8 +9,7 @@
   "scripts": {
     "build": " rollup -c",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_77816d968a8a797"
+    "build-storybook": "storybook build"
   },
   "files": [
     "dist"

@@ -1,0 +1,33 @@
+name: Deploy to Chromatic
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      - name: Build Storybook
+        run: |
+          pnpm run build-storybook  # `storybook build` 명령어 실행
+
+      - name: Deploy to Chromatic
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: |
+          npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --exit-once-uploaded
