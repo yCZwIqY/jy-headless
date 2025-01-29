@@ -1,14 +1,14 @@
 import { IconProps } from './index';
 import React from 'react';
 
-const CloseIcon = ({ color = '#000', size = '1em', bgColor = 'transparent' }: IconProps) => {
+const CloseIcon = ({ color = '#000', size = '1em', bgColor = 'transparent', style }: IconProps) => {
   return (
     <svg
       viewBox="0 0 24 24"
       width={size}
       height={size}
       fill="none"
-      style={{ backgroundColor: bgColor }}
+      style={{ backgroundColor: bgColor, ...style }}
       xmlns="http://www.w3.org/2000/svg"
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

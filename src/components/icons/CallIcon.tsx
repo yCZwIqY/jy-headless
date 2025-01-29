@@ -6,6 +6,7 @@ const CallIcon = ({
   size = '1em',
   bgColor = 'transparent',
   fill = 'none',
+  style,
 }: IconProps) => {
   return (
     <svg
@@ -13,7 +14,7 @@ const CallIcon = ({
       width={size}
       height={size}
       fill={fill}
-      style={{ backgroundColor: bgColor }}
+      style={{ backgroundColor: bgColor, ...style }}
       xmlns="http://www.w3.org/2000/svg"
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

@@ -6,13 +6,14 @@ const UpArrowIcon = ({
   size = '1em',
   bgColor = 'transparent',
   fill = 'none',
+  style,
 }: IconProps) => {
   return (
     <svg
       width={size}
       height={size}
       fill={color}
-      style={{ backgroundColor: bgColor }}
+      style={{ backgroundColor: bgColor, ...style }}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
