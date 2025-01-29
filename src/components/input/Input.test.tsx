@@ -1,7 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Input, { InputProps } from './Input';
 import { expect, userEvent } from '@storybook/test';
+
 describe('Input Component', () => {
   const defaultProps: InputProps = {
     value: '',
