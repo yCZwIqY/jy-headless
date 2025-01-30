@@ -1,5 +1,6 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
 import ImagePlusIcon from '../icons/ImagePlusIcon';
+import generateHash from '../utils/generateHash';
 
 interface ImageInput extends HTMLAttributes<HTMLInputElement> {
   onFileChange: (url: string) => void;
@@ -8,7 +9,7 @@ interface ImageInput extends HTMLAttributes<HTMLInputElement> {
 }
 
 const ImageInput = ({
-  id = crypto.randomUUID(),
+  id = generateHash(),
   preview,
   defaultElement = (
     <ImagePlusIcon
@@ -28,20 +29,22 @@ const ImageInput = ({
     const file = e.target.files?.[0];
     const reader = new FileReader();
     if (file) {
-      reader.onload = (e) => {
-        onFileChange(e.target?.result as string);
+      reader.onload = (fileEvent) => {
+        if (fileEvent) {
+          onFileChange(fileEvent.target?.result as string);
+          reader.readAsDataURL(file as Blob);
+        }
       };
     }
-    onChange(e);
-    reader.readAsDataURL(file as Blob);
+    onChange?.(e);
   };
 
   return (
-    <span>
+    <span data-testid={'image-input-wrapper'}>
       <label htmlFor={id}>
         {preview ? (
           <span
-            role={'img'}
+            data-testid={'image-input-preview'}
             style={{
               display: 'inline-block',
               background: `url(${preview}) no-repeat center/cover`,
@@ -57,6 +60,7 @@ const ImageInput = ({
       </label>
       <input
         id={id}
+        data-testid={'image-input'}
         type="file"
         style={{ display: 'none' }}
         accept={'image/*'}

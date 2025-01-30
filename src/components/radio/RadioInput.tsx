@@ -1,4 +1,5 @@
 import React, { InputHTMLAttributes, ReactNode, useEffect, useMemo, useState } from 'react';
+import generateHash from '../utils/generateHash';
 
 export interface RadioInputProps extends InputHTMLAttributes<HTMLInputElement> {
   clearable?: boolean;
@@ -23,7 +24,7 @@ const RadioInput = ({
   ...restProps
 }: RadioInputProps) => {
   const [selected, setSelected] = useState(checked || false);
-  const uniqueId = useMemo(() => id || `radio-${crypto.randomUUID()}`, [id]);
+  const uniqueId = useMemo(() => id || `radio-${generateHash()}`, [id]);
 
   useEffect(() => {
     setSelected(checked || false);

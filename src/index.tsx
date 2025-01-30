@@ -8,7 +8,8 @@ import Modal from './components/modal/Modal';
 import Tab from './components/tabs/Tab';
 import Accordion from './components/accordion/Accordion';
 import Dropdown from './components/dropdown/Dropdown';
-
+import ImageInput from './components/input/ImageInput';
+import generateHash from './components/utils/generateHash';
 import {
   CallIcon,
   CloseIcon,
@@ -39,4 +40,6 @@ export {
   Tab,
   Accordion,
   Dropdown,
+  ImageInput,
+  generateHash,
 };

@@ -1,5 +1,6 @@
 import React, { CSSProperties, ReactNode, useMemo, useState } from 'react';
 import RadioInput, { RadioInputProps } from './RadioInput';
+import generateHash from '../utils/generateHash';
 
 export interface RadioGroupProps {
   children: ReactNode;
@@ -94,7 +95,7 @@ const RadioGroupItem = ({
   disabled,
   ...restProps
 }: RadioGroupItemProps) => {
-  const uniqueId = useMemo(() => restProps.id ?? `radio-${crypto.randomUUID()}`, [restProps.id]);
+  const uniqueId = useMemo(() => restProps.id ?? `radio-${generateHash()}`, [restProps.id]);
 
   return (
     <RadioInput
