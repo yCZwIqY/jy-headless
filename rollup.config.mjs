@@ -23,5 +23,8 @@ export default {
 			tsconfig: './tsconfig.json',
 		}),
 	],
+	treeshake: {
+		propertyReadSideEffects: false
+	},
 	external: ['react', 'react-dom'],
 };

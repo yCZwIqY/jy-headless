@@ -12,7 +12,7 @@ describe('Button component', () => {
   // 2. loading이 true일 때 spinner가 렌더링되는지 확인
   it('renders a spinner when loading is true', () => {
     render(<Button loading>Click me</Button>);
-    expect(screen.getByTestId('spinner')).toBeInTheDocument(); // Spinner에 testid="spinner" 추가 필요
+    expect(screen.getByTestId('spinner')).toBeInTheDocument();
   });
 
   // 3. loading이 false일 때 children이 렌더링되는지 확인
