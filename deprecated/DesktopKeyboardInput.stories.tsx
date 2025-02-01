@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import DesktopKeyboardInput from '../src/components/input/DesktopKeyboardInput';
+import DesktopKeyboardInput from './DesktopKeyboardInput';
 import { CSSProperties } from 'react';
 
 const meta: Meta<typeof DesktopKeyboardInput> = {

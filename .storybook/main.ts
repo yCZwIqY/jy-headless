@@ -1,7 +1,7 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
-  stories: ['../**/*.mdx', '../**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../stories/*.stories.@(js|jsx|mjs|ts|tsx|mdx)'],
 
   addons: [
     '@storybook/addon-onboarding',
@@ -19,7 +19,7 @@ const config: StorybookConfig = {
   docs: {},
 
   typescript: {
-    reactDocgen: 'react-docgen-typescript'
-  }
+    reactDocgen: 'react-docgen-typescript',
+  },
 };
 export default config;

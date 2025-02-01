@@ -23,6 +23,8 @@
     "src/setupTests.ts"
   ],
   "exclude": [
+    "deprecated/**/*",
+    ".storybook/**/*",
     ".storybook/**/*",
     "stories/**/*",
     "**/*.test.ts",
