@@ -13,7 +13,6 @@ jy-headless는 React용으로 설계된 현대적이고 경량화된 커스터�
 ## 컴포넌트
 - Button
 - Input
-- DesktopKeyboardInput
 - ImageInput
 - Spinner 
 - Radio
@@ -26,6 +25,7 @@ jy-headless는 React용으로 설계된 현대적이고 경량화된 커스터�
 - Icons
   - CallIcon
   - CloseIcon
+  - SearchIcon
   - HomeIcon
   - SearchIcon
   - DownArrowIcon
