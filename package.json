@@ -1,6 +1,6 @@
 {
   "name": "jy-headless",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A lightweight and customizable headless UI library for React components",
   "main": "dist/index.cjs",
   "typings": "dist/index.d.ts",
@@ -29,7 +29,7 @@
     "tailwind",
     "storybook"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "module",
   "devDependencies": {
     "@babel/preset-env": "^7.26.7",
