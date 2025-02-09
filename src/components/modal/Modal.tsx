@@ -81,6 +81,8 @@ const ModalCloseButton = ({ ...props }: ButtonProps) => {
   return <Button {...props} onClick={() => setIsShow(false)} />;
 };
 
+ModalOverlay.displayName = 'Modal.Overlay';
+ModalCloseButton.displayName = 'Modal.Closer';
 Modal.Overlay = ModalOverlay;
 Modal.Closer = ModalCloseButton;
 export default Modal;

@@ -53,5 +53,6 @@ const TabItem = ({
   );
 };
 
+TabItem.displayName = 'Tab.Item';
 Tab.Item = TabItem;
 export default Tab;

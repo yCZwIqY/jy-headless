@@ -113,6 +113,7 @@ const DropdownItem = ({ children, value, ...restProps }: DropdownItemProps) => {
   );
 };
 
+DropdownItem.displayName = 'Dropdown.Item';
 Dropdown.Item = DropdownItem;
 
 export default Dropdown;

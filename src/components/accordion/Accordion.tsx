@@ -41,6 +41,8 @@ const AccordionDetail = ({ children, ...restProps }: DetailProps) => {
   return <div {...restProps}>{children}</div>;
 };
 
+AccordionSummary.displayName = 'Accordion.Summary';
+AccordionDetail.displayName = 'Accordion.Detail';
 Accordion.Summary = AccordionSummary;
 Accordion.Detail = AccordionDetail;
 export default Accordion;
