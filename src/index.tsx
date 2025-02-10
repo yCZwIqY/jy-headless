@@ -9,6 +9,7 @@ import Accordion from './components/accordion/Accordion';
 import Dropdown from './components/dropdown/Dropdown';
 import ImageInput from './components/input/ImageInput';
 import generateHash from './components/utils/generateHash';
+import Tooltip from './components/tooltip/Tooltip';
 import {
   CallIcon,
   CloseIcon,
@@ -40,4 +41,5 @@ export {
   Dropdown,
   ImageInput,
   generateHash,
+  Tooltip,
 };
