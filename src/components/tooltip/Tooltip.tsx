@@ -39,7 +39,7 @@ const Tooltip = ({ tooltip, children, position = 'top', style, ...restProps }) =
     zIndex: 999,
     width: 'fit-content',
     height: 'fit-content',
-  };
+  } as const;
 
   return (
     <span onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} style={{ position: 'relative' }}>
