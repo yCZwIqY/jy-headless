@@ -10,6 +10,7 @@ import Dropdown from './components/dropdown/Dropdown';
 import ImageInput from './components/input/ImageInput';
 import generateHash from './components/utils/generateHash';
 import Tooltip from './components/tooltip/Tooltip';
+import Checkbox from './components/checkbox/Checkbox';
 import {
   CallIcon,
   CloseIcon,
@@ -42,4 +43,5 @@ export {
   ImageInput,
   generateHash,
   Tooltip,
+  Checkbox,
 };
