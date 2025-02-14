@@ -57,7 +57,7 @@ const App = () => (
     <Modal isOpen={true} opener={<Button>open dialog</Button>}>
       <Modal.Overlay>
         <h3>모달입니다</h3>
-        <Modal.Closer></Modal.Closer>
+        <Modal.Close></Modal.Close>
       </Modal.Overlay>
     </Modal>
   </div>
