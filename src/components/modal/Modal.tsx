@@ -1,6 +1,7 @@
 import React, {
   CSSProperties,
   DetailedReactHTMLElement,
+  JSX,
   ReactNode,
   useContext,
   useState,
@@ -10,8 +11,8 @@ import Button, { ButtonProps } from '../button/Button';
 import ModalContext from './ModalContext';
 
 interface ModalProps {
-  opener: ReactNode;
-  children: ReactNode;
+  opener: ReactNode | JSX.Element;
+  children: ReactNode | JSX.Element;
   targetSelector?: string;
 }
 
@@ -37,7 +38,7 @@ const Modal = ({ opener, children, targetSelector = '#root' }: ModalProps) => {
 interface ModalOverlayProps {
   backgroundColor?: string;
   zIndex?: number;
-  children: ReactNode;
+  children: ReactNode | JSX.Element;
   style?: CSSProperties;
   className?: string;
 }
@@ -82,7 +83,7 @@ const ModalCloseButton = ({ ...props }: ButtonProps) => {
 };
 
 ModalOverlay.displayName = 'Modal.Overlay';
-ModalCloseButton.displayName = 'Modal.Closer';
+ModalCloseButton.displayName = 'Modal.Close';
 Modal.Overlay = ModalOverlay;
-Modal.Closer = ModalCloseButton;
+Modal.Close = ModalCloseButton;
 export default Modal;

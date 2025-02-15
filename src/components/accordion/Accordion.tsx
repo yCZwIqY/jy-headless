@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode } from 'react';
+import React, { HTMLAttributes, JSX, ReactNode } from 'react';
 import DownArrowIcon from '../icons/DownArrowIcon';
 
 interface AccordionProps extends HTMLAttributes<HTMLDetailsElement> {
@@ -23,7 +23,7 @@ const Accordion = ({ children, isOpen, setIsOpen, ...restProps }: AccordionProps
 };
 
 interface SummaryProps extends HTMLAttributes<HTMLDivElement> {
-  icon?: ReactNode;
+  icon?: ReactNode | JSX.Element;
 }
 
 const AccordionSummary = ({ icon = <DownArrowIcon />, children, ...restProps }: SummaryProps) => {

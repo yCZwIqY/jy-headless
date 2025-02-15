@@ -1,10 +1,10 @@
-import React, { HTMLAttributes, ReactNode } from 'react';
+import React, { HTMLAttributes, JSX, ReactNode } from 'react';
 import ImagePlusIcon from '../icons/ImagePlusIcon';
 import generateHash from '../utils/generateHash';
 
 interface ImageInput extends HTMLAttributes<HTMLInputElement> {
   onFileChange: (url: string) => void;
-  defaultElement?: ReactNode;
+  defaultElement?: ReactNode | JSX.Element;
   preview: string;
 }
 

@@ -3,7 +3,7 @@ import TabContext from './TabContext';
 
 interface TabProps extends HTMLAttributes<HTMLDivElement> {
   currentTab: string;
-  onChangeTab: (id: string) => void;
+  onChangeTab?: (id: string) => void;
 }
 
 const Tab = ({ children, currentTab, onChangeTab, ...restProps }: TabProps) => {
@@ -32,9 +32,9 @@ const TabItem = ({ children, tabId, ...restProps }: TabItemProps) => {
   if (!context) {
     throw new Error('ModalCloseButton must be used within a ModalContext.Provider');
   }
-  const { currentTabId, onChangeTab } = context;
+  const { onChangeTab } = context;
   return (
-    <span {...restProps} onClick={() => onChangeTab(tabId)}>
+    <span {...restProps} onClick={() => onChangeTab?.(tabId)}>
       {children}
     </span>
   );

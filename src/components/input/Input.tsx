@@ -1,13 +1,13 @@
-import React, { CSSProperties, InputHTMLAttributes, ReactNode } from 'react';
+import React, { CSSProperties, InputHTMLAttributes, JSX, ReactNode } from 'react';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   showLimit?: boolean;
   containerStyle?: CSSProperties;
   containerClassName?: string;
-  prefixElement?: ReactNode;
-  suffixElement?: ReactNode;
+  prefixElement?: ReactNode | JSX.Element;
+  suffixElement?: ReactNode | JSX.Element;
   showError?: boolean;
-  error?: ReactNode | string;
+  error?: ReactNode | JSX.Element | string;
 }
 
 const Input = ({
