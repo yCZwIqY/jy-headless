@@ -27,27 +27,14 @@ interface TabItemProps extends HTMLAttributes<HTMLDivElement> {
   activeClassName?: string;
 }
 
-const TabItem = ({
-  children,
-  style = {},
-  className = '',
-  activeStyle = {},
-  activeClassName = '',
-  tabId,
-  ...restProps
-}: TabItemProps) => {
+const TabItem = ({ children, tabId, ...restProps }: TabItemProps) => {
   const context = useContext(TabContext);
   if (!context) {
     throw new Error('ModalCloseButton must be used within a ModalContext.Provider');
   }
   const { currentTabId, onChangeTab } = context;
   return (
-    <span
-      {...restProps}
-      onClick={() => onChangeTab(tabId)}
-      style={currentTabId === tabId ? activeStyle : style}
-      className={currentTabId === tabId ? activeClassName : className}
-    >
+    <span {...restProps} onClick={() => onChangeTab(tabId)}>
       {children}
     </span>
   );

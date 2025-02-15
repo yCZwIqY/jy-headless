@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Tab from '../src/components/tabs/Tab';
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 
 const meta: Meta<typeof Tab> = {
   title: 'Common/Others/Tab',
@@ -28,22 +27,31 @@ export const Default: StoryObj<typeof Tab> = {
       >
         <Tab.Item
           tabId="tab1"
-          activeStyle={{ fontWeight: 'bold', color: '#007BFF' }}
-          style={{ cursor: 'pointer', padding: '4px 8px' }}
+          style={{
+            cursor: 'pointer',
+            padding: '4px 8px',
+            ...(currentTab === 'tab1' && { fontWeight: 'bold', color: '#007BFF' }),
+          }}
         >
           Tab 1
         </Tab.Item>
         <Tab.Item
           tabId="tab2"
-          activeStyle={{ fontWeight: 'bold', color: '#007BFF' }}
-          style={{ cursor: 'pointer', padding: '4px 8px' }}
+          style={{
+            cursor: 'pointer',
+            padding: '4px 8px',
+            ...(currentTab === 'tab2' && { fontWeight: 'bold', color: '#007BFF' }),
+          }}
         >
           Tab 2
         </Tab.Item>
         <Tab.Item
           tabId="tab3"
-          activeStyle={{ fontWeight: 'bold', color: '#007BFF' }}
-          style={{ cursor: 'pointer', padding: '4px 8px' }}
+          style={{
+            cursor: 'pointer',
+            padding: '4px 8px',
+            ...(currentTab === 'tab3' && { fontWeight: 'bold', color: '#007BFF' }),
+          }}
         >
           Tab 3
         </Tab.Item>
@@ -69,51 +77,51 @@ export const WithCustomStyles: StoryObj<typeof Tab> = {
       >
         <Tab.Item
           tabId="tab1"
-          activeStyle={{
-            fontWeight: 'bold',
-            color: 'white',
-            backgroundColor: '#007BFF',
-            borderRadius: '4px',
-          }}
           style={{
             cursor: 'pointer',
             padding: '8px 12px',
             borderRadius: '4px',
             backgroundColor: '#f0f0f0',
+            ...(currentTab === 'tab1' && {
+              fontWeight: 'bold',
+              color: 'white',
+              backgroundColor: '#007BFF',
+              borderRadius: '4px',
+            }),
           }}
         >
           Custom Tab 1
         </Tab.Item>
         <Tab.Item
           tabId="tab2"
-          activeStyle={{
-            fontWeight: 'bold',
-            color: 'white',
-            backgroundColor: '#007BFF',
-            borderRadius: '4px',
-          }}
           style={{
             cursor: 'pointer',
             padding: '8px 12px',
             borderRadius: '4px',
             backgroundColor: '#f0f0f0',
+            ...(currentTab === 'tab2' && {
+              fontWeight: 'bold',
+              color: 'white',
+              backgroundColor: '#007BFF',
+              borderRadius: '4px',
+            }),
           }}
         >
           Custom Tab 2
         </Tab.Item>
         <Tab.Item
           tabId="tab3"
-          activeStyle={{
-            fontWeight: 'bold',
-            color: 'white',
-            backgroundColor: '#007BFF',
-            borderRadius: '4px',
-          }}
           style={{
             cursor: 'pointer',
             padding: '8px 12px',
             borderRadius: '4px',
             backgroundColor: '#f0f0f0',
+            ...(currentTab === 'tab3' && {
+              fontWeight: 'bold',
+              color: 'white',
+              backgroundColor: '#007BFF',
+              borderRadius: '4px',
+            }),
           }}
         >
           Custom Tab 3
