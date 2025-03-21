@@ -22,12 +22,14 @@
     "import": "./dist/index.esm.js",
     "require": "./dist/index.cjs"
   },
-  "keywords": [ "react",
+  "keywords": [
+    "react",
     "headless-ui",
     "react-components",
     "ui-library",
     "tailwind",
-    "storybook"],
+    "storybook"
+  ],
   "author": "",
   "license": "MIT",
   "type": "module",

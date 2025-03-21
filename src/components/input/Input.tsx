@@ -41,7 +41,7 @@ const Input = ({
         maxLength={maxLength}
         className={className}
         style={{
-          all: 'unset',
+          all: 'revert-layer',
           ...style,
         }}
       />

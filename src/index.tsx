@@ -11,6 +11,7 @@ import ImageInput from './components/input/ImageInput';
 import generateHash from './components/utils/generateHash';
 import Tooltip from './components/tooltip/Tooltip';
 import Checkbox from './components/checkbox/Checkbox';
+import CheckboxList from './components/checkbox/CheckboxList';
 import {
   CallIcon,
   CloseIcon,
@@ -44,4 +45,5 @@ export {
   generateHash,
   Tooltip,
   Checkbox,
+  CheckboxList,
 };

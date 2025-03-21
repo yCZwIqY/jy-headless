@@ -13,15 +13,10 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "tslib": [
-        "path/to/node_modules/tslib/tslib.d.ts"
-      ]
+      "tslib": ["path/to/node_modules/tslib/tslib.d.ts"]
     }
   },
-  "include": [
-    "src/**/*",
-    "src/setupTests.ts"
-  ],
+  "include": ["src/**/*", "src/setupTests.ts"],
   "exclude": [
     "deprecated/**/*",
     ".storybook/**/*",
