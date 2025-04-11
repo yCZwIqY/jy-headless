@@ -1,4 +1,3 @@
-// __tests__/Button.test.tsx
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import Button from './Button';
@@ -14,10 +13,10 @@ describe('Button', () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  it('debounces onClick when debounce prop is true', () => {
+  it('debounces onClick when useDebounce prop is true', () => {
     const handleClick = jest.fn();
     render(
-      <Button onClick={handleClick} debounce>
+      <Button onClick={handleClick} useDebounce>
         Click
       </Button>,
     );

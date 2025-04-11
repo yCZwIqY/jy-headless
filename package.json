@@ -1,6 +1,6 @@
 {
   "name": "jy-headless",
-  "version": "0.2.23",
+  "version": "0.2.27",
   "description": "A lightweight and customizable headless UI library for React components",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -8,7 +8,7 @@
   "repository": "https://github.com/yCZwIqY/jy-headless",
   "scripts": {
     "build": " rollup -c",
-    "build-publish": "npm run build && node setupPackage.mjs && cd dist && npm publish",
+    "build-publish": "pnpm run build && node setupPackage.mjs && cd dist && npm publish",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -20,16 +20,6 @@
       "import": "./dist/index.js",
       "require": "./dist/cjs/index.js",
       "types": "./dist/index.d.ts"
-    },
-    "./buttons": {
-      "import": "./buttons/index.js",
-      "require": "./cjs/buttons/index.js",
-      "types": "./types/buttons/index.d.ts"
-    },
-    "./buttons/Button": {
-      "import": "./buttons/Button/Button.js",
-      "require": "./cjs/buttons/Button/Button.js",
-      "types": "./types/buttons/Button/Button.d.ts"
     }
   },
   "keywords": [

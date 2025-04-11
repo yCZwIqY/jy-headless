@@ -1,27 +1,16 @@
 import type { ButtonProps } from '../../types';
-import { useRef } from 'react';
-
+import useDebouncing from '../../hooks/useDebouncing';
 const Button = ({
   onClick,
-  debounce = false,
   loading = false,
   readOnly = false,
   disabled = false,
+  useDebounce = false,
+  timeout = 300,
   children,
   ...props
 }: ButtonProps) => {
-  const timer = useRef(0);
-  const handleClick = (() => {
-    if (!onClick) return;
-    if (debounce) {
-      return () => {
-        clearTimeout(timer.current);
-        timer.current = setTimeout(onClick, 300);
-      };
-    }
-    return onClick;
-  })();
-
+  const handleClick = onClick && useDebounce ? useDebouncing(onClick, timeout || 300) : onClick;
   return (
     <button onClick={handleClick} disabled={disabled || loading || readOnly} {...props}>
       {children}
