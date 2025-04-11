@@ -10,32 +10,7 @@ jy-headless는 React용으로 설계된 현대적이고 경량화된 커스터�
 - TypeScript 지원: TypeScript로 구축되어 개발자 경험과 타입 안전성이 향상되었습니다.
 - 성능 최적화: Rollup을 사용하여 트리 쉐이킹과 최적화된 번들 사이즈를 구현
 
-## 컴포넌트
-
-- Button
-- Input
-- ImageInput
-- Spinner
-- Radio
-  - RadioInput
-  - RadioGroup
-- Checkbox
-  - Checkbox(Single)
-  - CheckboxList
-- Modal
-- Tab
-- Accordion
-  Dropdown
-- Icons
-  - CallIcon
-  - CloseIcon
-  - SearchIcon
-  - HomeIcon
-  - SearchIcon
-  - DownArrowIcon
-  - UpArrowIcon
-  - ImageIcon
-  - ImagePlusIcon
+## 구현된 컴포넌트
 
 ## Storybook
 
