@@ -1,13 +1,14 @@
 {
   "name": "jy-headless",
-  "version": "0.1.12",
+  "version": "0.2.23",
   "description": "A lightweight and customizable headless UI library for React components",
-  "main": "dist/index.cjs",
-  "typings": "dist/index.d.ts",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/yCZwIqY/jy-headless",
   "scripts": {
     "build": " rollup -c",
+    "build-publish": "npm run build && node setupPackage.mjs && cd dist && npm publish",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -15,12 +16,21 @@
     "dist"
   ],
   "exports": {
-    "types": {
-      "import": "./dist/index.d.ts",
-      "require": "./dist/index.d.cts"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/index.d.ts"
     },
-    "import": "./dist/index.esm.js",
-    "require": "./dist/index.cjs"
+    "./buttons": {
+      "import": "./buttons/index.js",
+      "require": "./cjs/buttons/index.js",
+      "types": "./types/buttons/index.d.ts"
+    },
+    "./buttons/Button": {
+      "import": "./buttons/Button/Button.js",
+      "require": "./cjs/buttons/Button/Button.js",
+      "types": "./types/buttons/Button/Button.d.ts"
+    }
   },
   "keywords": [
     "react",
@@ -34,9 +44,11 @@
   "license": "MIT",
   "type": "module",
   "devDependencies": {
+    "@babel/core": "^7.26.10",
     "@babel/preset-env": "^7.26.7",
     "@babel/preset-react": "^7.26.3",
     "@chromatic-com/storybook": "3.2.4",
+    "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@storybook/addon-essentials": "^8.5.1",
@@ -68,6 +80,11 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "tslib": "^2.8.1"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   }
 }
