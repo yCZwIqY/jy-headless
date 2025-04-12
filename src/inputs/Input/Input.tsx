@@ -24,7 +24,7 @@ const Input = ({
       style={wrapperStyle}
     >
       {prefixElement}
-      <input id={id} onChange={handleChange} {...props} />
+      <input role={'textbox'} id={id} onChange={handleChange} {...props} />
       {suffixElement}
     </span>
   );
