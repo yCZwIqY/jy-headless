@@ -47,3 +47,18 @@ export const Loading: Story = {
     );
   },
 };
+
+export const CustomStyle: Story = {
+  args: {
+    children: 'Styled Button',
+    style: {
+      backgroundColor: '#007bff',
+      color: '#fff',
+      padding: '10px 16px',
+      borderRadius: '8px',
+      border: 'none',
+      fontWeight: 'bold',
+      cursor: 'pointer',
+    },
+  },
+};
