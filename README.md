@@ -14,6 +14,7 @@ jy-headless는 React용으로 설계된 현대적이고 경량화된 커스터�
 
 - [Button](src/buttons/Button/Button.md)
 - [Input](src/inputs/Input/Input.md)
+- [ImageInput](src/inputs/ImageInput/ImageInput.md)
 - [Dropdown](src/selectors/Dropdown/dropdown.md)
 
   
@@ -35,21 +36,25 @@ yarn add jy-headless
 
 컴포넌트를 아래와 같이 import하여 사용할 수 있습니다:
 
-```jsx
-import { Button, Input, Modal } from 'jy-headless';
+```tsx
+import Dropdown from 'jy-headless/dropdowns';
+import useDropdown from 'jy-headless/hooks/useDropdown';
 
-const App = () => (
-  <div>
-    <Button onClick={() => alert('Button clicked!')}>클릭하세요</Button>
-    <Input placeholder="무언가를 입력하세요..." />
-    <Modal isOpen={true} opener={<Button>open dialog</Button>}>
-      <Modal.Overlay>
-        <h3>모달입니다</h3>
-        <Modal.Close></Modal.Close>
-      </Modal.Overlay>
-    </Modal>
-  </div>
-);
+function App() {
+  const { selected, select, isOpen, toggle } = useDropdown('option1');
+
+  return (
+    <Dropdown selected={selected} select={select} isOpen={isOpen} toggle={toggle}>
+      <Dropdown.Viewer>{selected}</Dropdown.Viewer>
+      <Dropdown.Button>{isOpen ? '▼' : '▲'}</Dropdown.Button>
+      <Dropdown.Options>
+        <Dropdown.Option value="option1">Option 1</Dropdown.Option>
+        <Dropdown.Option value="option2">Option 2</Dropdown.Option>
+        <Dropdown.Option value="option3">Option 3</Dropdown.Option>
+      </Dropdown.Options>
+    </Dropdown>
+  );
+}
 ```
 
 ## 라이선스
