@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Input from './Input';
+import { useState } from 'react';
 
 const meta: Meta<typeof Input> = {
   component: Input,
@@ -27,6 +28,29 @@ export const WithPrefixAndSuffix: Story = {
   args: {
     prefixElement: <span>@</span>,
     suffixElement: <span>.com</span>,
+  },
+};
+
+export const ShowLimit: Story = {
+  render: () => {
+    const [value, setValue] = useState<string>('');
+    return (
+      <Input
+        showLimit
+        maxLength={10}
+        wrapperStyle={{
+          border: '1px solid black',
+          padding: '2px',
+        }}
+        style={{
+          border: 'none',
+          outline: 'none',
+          backgroundColor: 'transparent',
+        }}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    );
   },
 };
 

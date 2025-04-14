@@ -1,9 +1,10 @@
 import { InputProps } from '../../types';
 import useThrottling from '../../hooks/useThrottling';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 const Input = ({
   id,
+  value,
   suffixElement,
   prefixElement,
   wrapperStyle,
@@ -12,9 +13,14 @@ const Input = ({
   timeout = 300,
   useThrottle = false,
   children,
+  showLimit,
+  maxLength,
   ...props
 }: InputProps) => {
-  const handleChange = onChange && useThrottle ? useThrottling(onChange, timeout) : onChange;
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (maxLength && e.target.value?.length > maxLength) return;
+    (onChange && useThrottle ? useThrottling(onChange, timeout) : onChange)?.(e);
+  };
 
   return (
     <span
@@ -24,10 +30,17 @@ const Input = ({
       style={wrapperStyle}
     >
       {prefixElement}
-      <input role={'textbox'} id={id} onChange={handleChange} {...props} />
+      <input role={'textbox'} id={id} value={value} onChange={handleChange} {...props} />
+      {showLimit && maxLength && (
+        <span id={[id, 'input-limit'].join('-')}>
+          {(value ?? '').toString().length}/{maxLength}
+        </span>
+      )}
       {suffixElement}
     </span>
   );
 };
+
+const InputLimit = () => {};
 
 export default Input;

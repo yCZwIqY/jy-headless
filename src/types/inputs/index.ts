@@ -7,6 +7,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   wrapperClass?: string[];
   useThrottle?: boolean;
   timeout?: number;
+  showLimit?: boolean;
+  maxLength?: number;
 }
 
 export interface ImageInputContextData {
