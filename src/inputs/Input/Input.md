@@ -12,8 +12,8 @@ HTML `<input>` 요소를 확장하여 prefix/suffix 엘리먼트, 커스텀 스�
   `wrapperStyle`, `wrapperClass`를 통해 외부 래퍼 요소에 스타일 및 클래스를 자유롭게 적용할 수 있습니다.
 
 - **Throttling 지원**  
-  `useThrottle`을 `true`로 설정하면, `onChange` 호출 빈도를 제한할 수 있습니다.  
-  입력이 너무 자주 발생하는 상황에서도 성능을 최적화할 수 있습니다.
+  입력이 너무 자주 발생하는 상황에서도 성능을 최적화할 수 있습니다.  
+  `onThrottledChange` 콜백을 받아, 쓰로틀링된 이벤트를 적용할 수 있습니다.
 
 ## 💡 사용법
 
@@ -21,17 +21,25 @@ HTML `<input>` 요소를 확장하여 prefix/suffix 엘리먼트, 커스텀 스�
 import { Input } from 'jy-headless/inputs/Input';
 
 function App() {
+  const [value, setValue] = useState('');
+
+  const handleThrottledChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);  // 상태 업데이트
+  };
+
   return (
     <Input
       id="email"
+      value={value}  // 부모에서 관리되는 상태
+      onChange={(e) => console.log(e.target.value)}  // 기본 onChange 콜백
+      onThrottledChange={handleThrottledChange}  // 쓰로틀링된 onChange 콜백
       prefixElement={<span>@</span>}
       suffixElement={<span>.com</span>}
       wrapperClass="border px-2 py-1 rounded"
       wrapperStyle={{ backgroundColor: '#f9f9f9' }}
       placeholder="yourname"
-      onChange={(e) => console.log(e.target.value)}
-      useThrottle
-      throttleDelay={300}
+      useThrottle={true}
+      timeout={300}  // 쓰로틀링 지연 시간
     />
   );
 }

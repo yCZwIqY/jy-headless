@@ -11,17 +11,19 @@ const Input = ({
   wrapperClass = [],
   onChange,
   timeout = 300,
-  useThrottle = false,
   children,
   showLimit,
   maxLength,
+  onThrottledChange,
   ...props
 }: InputProps) => {
+  const throttledOnChange = onThrottledChange ? useThrottling(onThrottledChange, timeout) : null;
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (maxLength && e.target.value?.length > maxLength) return;
-    (onChange && useThrottle ? useThrottling(onChange, timeout) : onChange)?.(e);
+    onChange?.(e);
+    throttledOnChange?.(e);
   };
-
   return (
     <span
       data-testid={'input-wrapper'}
@@ -40,7 +42,5 @@ const Input = ({
     </span>
   );
 };
-
-const InputLimit = () => {};
 
 export default Input;

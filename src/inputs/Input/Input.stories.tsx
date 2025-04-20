@@ -68,3 +68,22 @@ export const CustomStyled: Story = {
     suffixElement: <span style={{ marginLeft: '4px' }}>.dev</span>,
   },
 };
+
+export const WithThrottle: Story = {
+  render: () => {
+    const [value, setValue] = useState('');
+    const [throttledValue, setThrottledValue] = useState('');
+
+    return (
+      <div>
+        <Input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onThrottledChange={(e) => setThrottledValue(e.target.value)}
+        />
+        <div>value: {value}</div>
+        <div>throttledValue: {throttledValue}</div>
+      </div>
+    );
+  },
+};

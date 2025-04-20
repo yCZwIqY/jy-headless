@@ -1,14 +1,14 @@
-import { CSSProperties, InputHTMLAttributes, ReactElement, ReactNode } from 'react';
+import { ChangeEvent, CSSProperties, InputHTMLAttributes, ReactElement, ReactNode } from 'react';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   suffixElement?: ReactElement | ReactNode;
   prefixElement?: ReactElement | ReactNode;
   wrapperStyle?: CSSProperties;
   wrapperClass?: string[];
-  useThrottle?: boolean;
   timeout?: number;
   showLimit?: boolean;
   maxLength?: number;
+  onThrottledChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface ImageInputContextData {
