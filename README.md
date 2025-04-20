@@ -21,7 +21,7 @@ jy-headless는 React용으로 설계된 현대적이고 경량화된 커스터�
   
 ## Storybook
 
-[Storybook Demo](https://6795bdd4b570ec0f79b87452-njqhcfxnma.chromatic.com/)에서 `jy-headless` 라이브러리의 컴포넌트들을 실시간으로 확인할 수 있습니다.
+[Storybook Demo](https://6795bdd4b570ec0f79b87452-wgjysyoptv.chromatic.com/)에서 `jy-headless` 라이브러리의 컴포넌트들을 실시간으로 확인할 수 있습니다.
 
 ## 설치
 
