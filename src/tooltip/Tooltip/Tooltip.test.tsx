@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Tooltip from './index';
+import Tooltip from './Tooltip';
 import { userEvent } from '@testing-library/user-event';
 import { expect } from '@storybook/test';
 
