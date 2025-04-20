@@ -16,6 +16,7 @@ jy-headless는 React용으로 설계된 현대적이고 경량화된 커스터�
 - [Input](src/inputs/Input/Input.md)
 - [ImageInput](src/inputs/ImageInput/ImageInput.md)
 - [Dropdown](src/selectors/Dropdown/dropdown.md)
+- [Tooltip](src/tooltip/Tooltip.md)
 
   
 ## Storybook

@@ -1,12 +1,4 @@
-import {
-  ChangeEvent,
-  createContext,
-  DragEvent,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ChangeEvent, createContext, DragEvent, useContext, useEffect, useState } from 'react';
 import {
   ImageAttribute,
   ImageInputContextData,
