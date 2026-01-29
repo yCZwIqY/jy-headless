@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export interface HoverProps {
+export interface PopoverProps {
   children: ReactNode;
   popover: ReactNode;
   direction:
@@ -14,7 +14,8 @@ export interface HoverProps {
     | 'bottom'
     | 'bottom-center'
     | 'bottom-right';
-  rootId?: string;
+  targetId?: string;
   domNode?: Element;
   key?: string;
+  gap?: number;
 }

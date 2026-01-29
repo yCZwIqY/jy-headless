@@ -1,57 +1,42 @@
-import { HoverProps } from './Popover.type';
-import { useRef, useState, useLayoutEffect, useCallback } from 'react';
-import { createPortal } from 'react-dom';
+import { PopoverProps } from './Popover.type';
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import usePortal from '../hooks/usePortal';
 
-export const Popover = ({ children, direction, popover, domNode, rootId, key }: HoverProps) => {
+export const Popover = ({ direction = 'top', popover, children, key, gap = 0 }: PopoverProps) => {
+  const rootDom = useMemo(() => document.body, [document]);
   const [visible, setVisible] = useState<boolean>(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
-  const rootDom = domNode ?? document.getElementById(rootId ?? 'root');
   const targetRef = useRef<HTMLSpanElement>(null);
   const popoverRef = useRef<HTMLSpanElement>(null);
+  const portal = usePortal({
+    content: (
+      <span
+        ref={popoverRef}
+        style={{
+          position: 'absolute',
+          top: `${position.top}px`,
+          left: `${position.left}px`,
+        }}
+      >
+        {popover}
+      </span>
+    ),
+    key,
+  });
 
   const getPopoverPosition = useCallback(
     (targetRect: DOMRect, popoverRect: DOMRect) => {
-      let top = 0;
-      let left = 0;
-
-      switch (direction) {
-        case 'top-left':
-          top = targetRect.top - popoverRect.height;
-          left = targetRect.left;
-          break;
-        case 'top-center':
-        case 'top':
-          top = targetRect.top - popoverRect.height;
-          left = targetRect.left + (targetRect.width - popoverRect.width) / 2;
-          break;
-        case 'top-right':
-          top = targetRect.top - popoverRect.height;
-          left = targetRect.right - popoverRect.width;
-          break;
-        case 'left':
-          top = targetRect.top + (targetRect.height - popoverRect.height) / 2;
-          left = targetRect.left - popoverRect.width;
-          break;
-        case 'right':
-          top = targetRect.top + (targetRect.height - popoverRect.height) / 2;
-          left = targetRect.right;
-          break;
-        case 'bottom-left':
-          top = targetRect.bottom;
-          left = targetRect.left;
-          break;
-        case 'bottom-center':
-        case 'bottom':
-          top = targetRect.bottom;
-          left = targetRect.left + (targetRect.width - popoverRect.width) / 2;
-          break;
-        case 'bottom-right':
-          top = targetRect.bottom;
-          left = targetRect.right - popoverRect.width;
-          break;
-        default:
-          break;
-      }
+      let top =
+        (direction.startsWith('top')
+          ? targetRect.top - popoverRect.height
+          : direction.startsWith('bottom')
+            ? targetRect.top + targetRect.height
+            : targetRect.top + targetRect.height / 2 - popoverRect.height / 2) + gap;
+      let left = direction.endsWith('left')
+        ? targetRect.left - popoverRect.width
+        : (direction.endsWith('right')
+            ? targetRect.left + targetRect.width
+            : targetRect.left + targetRect.width / 2 - popoverRect.width / 2) + gap;
 
       return { top, left };
     },
@@ -78,22 +63,7 @@ export const Popover = ({ children, direction, popover, domNode, rootId, key }: 
   return (
     <span onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={targetRef}>
       {children}
-      {rootDom &&
-        visible &&
-        createPortal(
-          <span
-            ref={popoverRef}
-            style={{
-              position: 'absolute',
-              top: `${position.top}px`,
-              left: `${position.left}px`,
-            }}
-          >
-            {popover}
-          </span>,
-          rootDom,
-          key,
-        )}
+      {rootDom && visible && portal}
     </span>
   );
 };
