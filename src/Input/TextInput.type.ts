@@ -1,4 +1,4 @@
-import { CompositionEvent, HTMLProps } from 'react';
+import { ChangeEvent, CompositionEvent, HTMLProps } from 'react';
 
 export interface TextInputProps extends HTMLProps<HTMLInputElement> {
   validator?: (value: string) => boolean | string;
@@ -14,4 +14,5 @@ export interface TextInputProps extends HTMLProps<HTMLInputElement> {
   throttleMs?: number;
   onDebouncedChange?: (value: string) => void;
   onThrottledChange?: (value: string) => void;
+  onChange?: (value: ChangeEvent<HTMLInputElement>) => void;
 }

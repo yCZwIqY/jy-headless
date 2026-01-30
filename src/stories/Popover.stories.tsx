@@ -1,46 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Popover } from './Popover';
+import { Popover } from '../Popover/Popover';
 
 const meta: Meta<typeof Popover> = {
   title: 'Components/Popover',
   component: Popover,
   parameters: {
     layout: 'centered',
-    docs: {
-      description: {
-        component: `
-# Popover
-
-마우스 호버 시 타겟 요소 주변에 추가 정보를 표시하는 컴포넌트입니다.
-
-## 주요 기능
-
-- **8방향 배치**: 상단(좌/중앙/우), 하단(좌/중앙/우), 좌측, 우측 총 8가지 방향으로 팝오버를 배치할 수 있습니다.
-- **Portal 렌더링**: DOM 트리 구조와 무관하게 document.body에 렌더링되어 z-index 이슈를 방지합니다.
-- **자동 위치 계산**: 타겟 요소의 위치와 크기를 기반으로 팝오버의 위치를 자동으로 계산합니다.
-- **마우스 인터랙션**: 마우스를 올리면 표시되고, 벗어나면 자동으로 숨겨집니다.
-
-## 사용 예시
-
-\`\`\`tsx
-<Popover 
-  direction="top-center" 
-  popover={<div>추가 정보</div>}
->
-  <button>호버해보세요</button>
-</Popover>
-\`\`\`
-
-## Props
-
-- **children**: 팝오버를 트리거할 타겟 요소
-- **popover**: 팝오버에 표시될 콘텐츠
-- **direction**: 팝오버가 표시될 방향 (기본값: 'top')
-- **gap**: 타겟 요소와 팝오버 사이의 간격 (px, 기본값: 0)
-- **key**: Portal의 고유 식별자 (선택사항)
-        `,
-      },
-    },
   },
   tags: ['autodocs'],
   argTypes: {
