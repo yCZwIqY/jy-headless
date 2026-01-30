@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { createContext, Dispatch, SetStateAction, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import usePortal from '../hooks/usePortal';
 import { SelectOptionProps, SelectOptionsProps, SelectProps, SelectTriggerProps } from './Select.type';
 
@@ -9,6 +9,10 @@ type SelectContextValue = {
   toggleValue: (v: string) => void;
   multiple: boolean;
   triggerRef: React.RefObject<HTMLDivElement | null>;
+
+  optionRefs: React.MutableRefObject<HTMLDivElement[]>;
+  focusedIndex: number | null;
+  setFocusedIndex: Dispatch<SetStateAction<number>>
 };
 
 const SelectContext = createContext<SelectContextValue | null>(null);
@@ -23,6 +27,8 @@ export const useSelectContext = () => {
 const SelectContainer = ({ value, onChange, multiple = false, children }: SelectProps) => {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLDivElement>(null);
+  const optionRefs = useRef<HTMLDivElement[]>([]);
+  const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
   const toggleValue = (v: string) => {
     if (!multiple) {
@@ -47,6 +53,9 @@ const SelectContainer = ({ value, onChange, multiple = false, children }: Select
         toggleValue,
         multiple,
         triggerRef,
+        optionRefs,
+        focusedIndex,
+        setFocusedIndex,
       }}
     >
       {children}
@@ -55,14 +64,18 @@ const SelectContainer = ({ value, onChange, multiple = false, children }: Select
 };
 
 const Trigger = (props: SelectTriggerProps) => {
-  const { open, setOpen, triggerRef } = useSelectContext();
+  const { open, setOpen, triggerRef, setFocusedIndex } = useSelectContext();
 
   return (
     <div
       ref={triggerRef}
       role={'button'}
       aria-expanded={open}
-      onClick={() => setOpen(!open)}
+      onClick={(e) => {
+        setOpen(!open);
+        setFocusedIndex(0);
+        props.onClick?.(e);
+      }}
       {...props}
     />
   );
@@ -70,7 +83,7 @@ const Trigger = (props: SelectTriggerProps) => {
 
 
 const Options = ({ children, ...props }: SelectOptionsProps) => {
-  const { open, triggerRef, setOpen } = useSelectContext();
+  const { open, triggerRef, setOpen, setFocusedIndex, optionRefs } = useSelectContext();
   const popoverRef = useRef<HTMLDivElement>(null);
   const triggerWidth =
     triggerRef.current?.getBoundingClientRect().width;
@@ -98,6 +111,33 @@ const Options = ({ children, ...props }: SelectOptionsProps) => {
     };
   }, [open, setOpen, triggerRef]);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      e.preventDefault();
+      if (e.key === 'Escape') {
+        setOpen(false);
+        setFocusedIndex(-1);
+      }
+
+      if (e.key === 'ArrowUp') {
+        setFocusedIndex(prev => prev - 1 < 0 ? optionRefs.current.length - 1 : prev - 1);
+      }
+
+      if (e.key === 'ArrowDown') {
+        setFocusedIndex(prev => prev + 1 >= optionRefs.current.length ? 0 : prev + 1);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      optionRefs.current = [];
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+
+  }, [open]);
+
   const { portal } = usePortal({
     visible: open,
     targetRef: triggerRef,
@@ -117,14 +157,33 @@ const Options = ({ children, ...props }: SelectOptionsProps) => {
 
 
 const Option = ({ value, disabled, children, ...props }: SelectOptionProps) => {
-  const { value: selected, toggleValue } = useSelectContext();
+  const { value: selected, toggleValue, optionRefs, focusedIndex } = useSelectContext();
   const isSelected = selected.includes(value);
+  const [index, setIndex] = useState<number | null>(null);
+  const isFocused = useMemo(() => focusedIndex === index, [focusedIndex, index]);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current && index === null) {
+      setIndex(optionRefs.current.length);
+      optionRefs.current[optionRefs.current.length] = ref.current;
+    }
+  }, []);
+
+  useEffect(() => {
+    ref.current?.setAttribute('data-focused', String(focusedIndex === index));
+    if (focusedIndex === index) {
+      ref.current?.focus();
+    }
+  }, [focusedIndex, index]);
 
   return (
     <div
+      ref={ref}
       role='option'
       aria-selected={isSelected}
       aria-disabled={disabled}
+      data-focused={isFocused}
       onClick={() => {
         if (!disabled) toggleValue(value);
       }}
