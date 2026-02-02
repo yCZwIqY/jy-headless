@@ -1,35 +1,25 @@
-name: Publish to npm
+name: Publish
 
 on:
   push:
     tags:
-      - "v*.*.*" # v1.0.0 같은 태그 푸시 시 배포
+      - 'v*'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      id-token: write # Trusted Publishing용 (중요)
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org/
+          registry-url: 'https://registry.npmjs.org'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
+      - run: npm ci
+      - run: npm run build
 
-      - name: Install deps
-        run: pnpm install --frozen-lockfile
-
-      - name: Build & Publish
-        run: pnpm run build-publish
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
