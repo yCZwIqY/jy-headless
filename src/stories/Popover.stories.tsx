@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Popover } from '../Popover/Popover';
+import { Tooltip } from '../Tooltip/Tooltip';
 
-const meta: Meta<typeof Popover> = {
+const meta: Meta<typeof Tooltip> = {
   title: 'Components/Popover',
-  component: Popover,
+  component: Tooltip,
   parameters: {
     layout: 'centered',
   },
@@ -46,7 +46,7 @@ const meta: Meta<typeof Popover> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Popover>;
+type Story = StoryObj<typeof Tooltip>;
 
 export const Direction: Story = {
   name: '방향별 배치',
@@ -73,15 +73,15 @@ export const Direction: Story = {
   },
   render: (args) => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4px' }}>
-      <Popover {...args} popover={'top-left'} direction={'top-left'} />
-      <Popover {...args} popover={'top-center / top'} direction={'top-center'} />
-      <Popover {...args} popover={'top-right'} direction={'top-right'} />
-      <Popover {...args} popover={'left'} direction={'left'} />
+      <Tooltip {...args} popover={'top-left'} direction={'top-left'} />
+      <Tooltip {...args} popover={'top-center / top'} direction={'top-center'} />
+      <Tooltip {...args} popover={'top-right'} direction={'top-right'} />
+      <Tooltip {...args} popover={'left'} direction={'left'} />
       <span />
-      <Popover {...args} popover={'right'} direction={'right'} />
-      <Popover {...args} popover={'bottom-left'} direction={'bottom-left'} />
-      <Popover {...args} popover={'bottom-center / bottom'} direction={'bottom-center'} />
-      <Popover {...args} popover={'bottom-right'} direction={'bottom-right'} />
+      <Tooltip {...args} popover={'right'} direction={'right'} />
+      <Tooltip {...args} popover={'bottom-left'} direction={'bottom-left'} />
+      <Tooltip {...args} popover={'bottom-center / bottom'} direction={'bottom-center'} />
+      <Tooltip {...args} popover={'bottom-right'} direction={'bottom-right'} />
     </div>
   ),
 };

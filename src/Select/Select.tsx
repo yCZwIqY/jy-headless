@@ -2,28 +2,57 @@ import { createContext, Dispatch, SetStateAction, useContext, useEffect, useMemo
 import usePortal from '../hooks/usePortal';
 import { SelectOptionProps, SelectOptionsProps, SelectProps, SelectTriggerProps } from './Select.type';
 
+/**
+ * Select 내부 상태 공유용 Context
+ */
 type SelectContextValue = {
+  /** 드롭다운 열림 여부 */
   open: boolean;
+
+  /** 드롭다운 열기/닫기 */
   setOpen: (v: boolean) => void;
+
+  /** 현재 선택된 값들 */
   value: string[];
+
+  /** 값 토글 */
   toggleValue: (v: string) => void;
+
+  /** 다중 선택 여부 */
   multiple: boolean;
+
+  /** Trigger DOM ref */
   triggerRef: React.RefObject<HTMLDivElement | null>;
 
+  /** Option DOM refs 목록 */
   optionRefs: React.MutableRefObject<HTMLDivElement[]>;
+
+  /** 현재 포커스된 옵션 index */
   focusedIndex: number | null;
-  setFocusedIndex: Dispatch<SetStateAction<number>>
+
+  /** 포커스 index 설정 */
+  setFocusedIndex: Dispatch<SetStateAction<number>>;
 };
 
 const SelectContext = createContext<SelectContextValue | null>(null);
 
+/**
+ * Select Context 접근 훅
+ *
+ * @throws Select 외부에서 사용할 경우 에러
+ */
 export const useSelectContext = () => {
   const ctx = useContext(SelectContext);
   if (!ctx) throw new Error('Select components must be used within <Select>');
   return ctx;
 };
 
-
+/**
+ * Select 루트 컨테이너
+ *
+ * - 상태 관리 담당
+ * - Context Provider 역할
+ */
 const SelectContainer = ({ value, onChange, multiple = false, children }: SelectProps) => {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -63,6 +92,12 @@ const SelectContainer = ({ value, onChange, multiple = false, children }: Select
   );
 };
 
+/**
+ * Select 트리거 버튼
+ *
+ * - 클릭 시 Options 열림
+ * - 최초 포커스를 첫 옵션으로 이동
+ */
 const Trigger = (props: SelectTriggerProps) => {
   const { open, setOpen, triggerRef, setFocusedIndex } = useSelectContext();
 
@@ -81,7 +116,15 @@ const Trigger = (props: SelectTriggerProps) => {
   );
 };
 
-
+/**
+ * Options 드롭다운 영역
+ *
+ * 기능:
+ * - 외부 클릭 시 닫힘
+ * - ESC 키 닫기
+ * - ↑ ↓ 키 포커스 이동
+ * - portal 렌더링
+ */
 const Options = ({ children, ...props }: SelectOptionsProps) => {
   const { open, triggerRef, setOpen, setFocusedIndex, optionRefs } = useSelectContext();
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -155,7 +198,14 @@ const Options = ({ children, ...props }: SelectOptionsProps) => {
   return open ? portal : null;
 };
 
-
+/**
+ * 개별 선택 옵션
+ *
+ * 기능:
+ * - 선택 상태 표시
+ * - 포커스 관리
+ * - disabled 지원
+ */
 const Option = ({ value, disabled, children, ...props }: SelectOptionProps) => {
   const { value: selected, toggleValue, optionRefs, focusedIndex } = useSelectContext();
   const isSelected = selected.includes(value);
@@ -194,6 +244,20 @@ const Option = ({ value, disabled, children, ...props }: SelectOptionProps) => {
   );
 };
 
+/**
+ * Compound Select 컴포넌트
+ *
+ * 사용 예시:
+ *
+ * @example
+ * <Select value={value} onChange={setValue}>
+ *   <Select.Trigger>열기</Select.Trigger>
+ *   <Select.Options>
+ *     <Select.Option value="a">A</Select.Option>
+ *     <Select.Option value="b">B</Select.Option>
+ *   </Select.Options>
+ * </Select>
+ */
 const Select = Object.assign(SelectContainer, {
   Trigger,
   Options,

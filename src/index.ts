@@ -1,4 +1,4 @@
 export * from './hooks';
-export * from './Popover';
+export * from './Tooltip';
 export * from './Input/TextInput';
 export * from './Input/NumberInput';

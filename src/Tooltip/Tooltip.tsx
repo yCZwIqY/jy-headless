@@ -1,9 +1,16 @@
-import { PopoverProps } from './Popover.type';
+import { TooltipProps } from './Tooltip.type';
 import { useRef, useState } from 'react';
 import usePortal from '../hooks/usePortal';
 
-
-export const Popover = ({ direction = 'top', popover, children, key, gap = 0, autoFlip = true }: PopoverProps) => {
+/**
+ * 범용 Tooltip 컴포넌트
+ *
+ * @example
+ * <Tooltip popover="안녕하세요" direction="top">
+ *   <button>Hover me</button>
+ * </Tooltip>
+ */
+export const Tooltip = ({ direction = 'top', popover, children, key, gap = 0, autoFlip = true }: TooltipProps) => {
   const [visible, setVisible] = useState<boolean>(false);
   const targetRef = useRef<HTMLSpanElement>(null);
   const popoverRef = useRef<HTMLSpanElement>(null);
