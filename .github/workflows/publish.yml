@@ -1,4 +1,4 @@
-name: Publish
+name: Publish to npm
 
 on:
   push:
@@ -9,17 +9,29 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      id-token: write   # Trusted Publishing 핵심
+
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: https://registry.npmjs.org
 
-      - run: npm ci
-      - run: npm run build
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Install deps
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build
+        run: pnpm build --if-present
+
+      - name: Publish
+        run: pnpm publish --access public --no-git-checks
