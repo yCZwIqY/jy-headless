@@ -7,6 +7,7 @@ import type {
   AutocompleteOptionsProps,
   AutocompleteProps,
 } from './Autocomplete.type';
+import TextInput from '../Input/TextInput';
 
 type Ctx = {
   open: boolean;
@@ -168,7 +169,16 @@ const useItemsBridge = () => useContext(ItemsBridgeContext);
  * - 포커스는 input 유지
  * - aria-activedescendant로 active option을 알려줌
  */
-const Input = ({ onKeyDown, onFocus, onChange, ...props }: AutocompleteInputProps) => {
+// ...생략
+
+const Input = ({
+                 onKeyDown,
+                 onFocus,
+                 onChange,
+                 onCompositionStart,
+                 onCompositionEnd,
+                 ...props
+               }: AutocompleteInputProps) => {
   const {
     open,
     setOpen,
@@ -184,6 +194,9 @@ const Input = ({ onKeyDown, onFocus, onChange, ...props }: AutocompleteInputProp
     inputRef,
   } = useAutocomplete();
 
+  // ✅ IME 조합 중에는 방향키/엔터로 옵션 선택하지 않게 막기
+  const composingRef = useRef(false);
+
   const activeId = activeIndex >= 0 ? `${listboxId}-opt-${activeIndex}` : undefined;
 
   const move = (delta: number) => {
@@ -192,17 +205,9 @@ const Input = ({ onKeyDown, onFocus, onChange, ...props }: AutocompleteInputProp
     setActiveIndex(activeIndex < 0 ? 0 : (activeIndex + delta + filtered.length) % filtered.length);
   };
 
-  const pageMove = (deltaPages: number) => {
-    if (!filtered.length) return;
-    setOpen(true);
-    // 10개 단위 이동(관례). 필요하면 props로 빼도 됨
-    const jump = 10 * deltaPages;
-    setActiveIndex(Math.max(0, Math.min(filtered.length - 1, (activeIndex < 0 ? 0 : activeIndex) + jump)));
-  };
-
   return (
     <>
-      <input
+      <TextInput
         ref={inputRef}
         role='combobox'
         aria-autocomplete='list'
@@ -225,8 +230,22 @@ const Input = ({ onKeyDown, onFocus, onChange, ...props }: AutocompleteInputProp
           setActiveIndex(0);
           onChange?.(e);
         }}
+        onCompositionStart={(e) => {
+          composingRef.current = true;
+          onCompositionStart?.(e);
+        }}
+        onCompositionEnd={(e) => {
+          composingRef.current = false;
+          onCompositionEnd?.(e);
+        }}
         onKeyDown={(e) => {
           if (disabled) return;
+
+          // ✅ 조합중이면 Autocomplete 키처리 하지 않음
+          if (composingRef.current) {
+            onKeyDown?.(e);
+            return;
+          }
 
           switch (e.key) {
             case 'ArrowDown':
@@ -236,24 +255,6 @@ const Input = ({ onKeyDown, onFocus, onChange, ...props }: AutocompleteInputProp
             case 'ArrowUp':
               e.preventDefault();
               move(-1);
-              break;
-            case 'Home':
-              e.preventDefault();
-              setOpen(true);
-              setActiveIndex(filtered.length ? 0 : -1);
-              break;
-            case 'End':
-              e.preventDefault();
-              setOpen(true);
-              setActiveIndex(filtered.length ? filtered.length - 1 : -1);
-              break;
-            case 'PageDown':
-              e.preventDefault();
-              pageMove(1);
-              break;
-            case 'PageUp':
-              e.preventDefault();
-              pageMove(-1);
               break;
             case 'Enter':
               if (open && activeIndex >= 0) {
@@ -266,7 +267,6 @@ const Input = ({ onKeyDown, onFocus, onChange, ...props }: AutocompleteInputProp
               close();
               break;
             case 'Tab':
-              // 관례: 탭 이동 시 팝오버 닫기
               close();
               break;
           }
@@ -275,7 +275,7 @@ const Input = ({ onKeyDown, onFocus, onChange, ...props }: AutocompleteInputProp
         }}
         {...props}
       />
-      {/* aria-live: 결과 개수 안내 */}
+      {/* aria-live: 결과 수 안내 */}
       <span
         aria-live='polite'
         style={{

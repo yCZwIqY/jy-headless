@@ -1,4 +1,5 @@
-import React, { HTMLAttributes, InputHTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
+import { TextInputProps } from '../Input/TextInput.type';
 
 export type AutocompleteItem = {
   value: string;
@@ -21,7 +22,7 @@ export interface AutocompleteProps {
   children: ReactNode;
 }
 
-export interface AutocompleteInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface AutocompleteInputProps extends TextInputProps {
   /** label 연결용 (없으면 aria-label 필수) */
   'aria-label'?: string;
 }
