@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import Autocomplete from '../Autocomplete/Autocomplete';
+import { Autocomplete } from '../Autocomplete';
 
 const meta: Meta<typeof Autocomplete> = {
   title: 'Components/Autocomplete',

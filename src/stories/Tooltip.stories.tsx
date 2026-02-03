@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { Tooltip } from '../Tooltip/Tooltip';
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Components/Popover',
+  title: 'Components/Tooltip',
   component: Tooltip,
   parameters: {
     layout: 'centered',

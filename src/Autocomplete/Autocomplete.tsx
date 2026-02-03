@@ -7,7 +7,7 @@ import type {
   AutocompleteOptionsProps,
   AutocompleteProps,
 } from './Autocomplete.type';
-import TextInput from '../Input/TextInput';
+import { TextInput } from '../Input';
 
 type Ctx = {
   open: boolean;
@@ -498,10 +498,8 @@ const Option = ({ value, label, disabled, children, ...props }: AutocompleteOpti
   );
 };
 
-const Autocomplete = Object.assign(AutocompleteContainer, {
+export const Autocomplete = Object.assign(AutocompleteContainer, {
   Input,
   Options,
   Option,
 });
-
-export default Autocomplete;

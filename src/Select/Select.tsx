@@ -258,10 +258,8 @@ const Option = ({ value, disabled, children, ...props }: SelectOptionProps) => {
  *   </Select.Options>
  * </Select>
  */
-const Select = Object.assign(SelectContainer, {
+export const Select = Object.assign(SelectContainer, {
   Trigger,
   Options,
   Option,
 });
-
-export default Select;
