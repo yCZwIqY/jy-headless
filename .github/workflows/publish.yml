@@ -3,24 +3,24 @@ name: Publish to npm
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     permissions:
       contents: read
-      id-token: write   # Trusted Publishing 핵심
+      id-token: write
 
     steps:
       - uses: actions/checkout@v4
 
+      # Node를 22 이상 권장 (npm 버전이 새로워서 provenance/OIDC 쪽 안정적)
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org
+          node-version: 22
+          registry-url: "https://registry.npmjs.org/"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
@@ -33,5 +33,6 @@ jobs:
       - name: Build
         run: pnpm build --if-present
 
+      # 핵심: Trusted Publisher(OIDC) 경로
       - name: Publish
-        run: pnpm publish --access public --no-git-checks
+        run: npm publish --provenance --access public
