@@ -1,32 +1,46 @@
 import React, { HTMLAttributes, InputHTMLAttributes, ReactNode } from 'react';
 
+export type AutocompleteItem = {
+  value: string;
+  label: string;
+  disabled?: boolean;
+};
+
 export interface AutocompleteProps {
-  /** 선택된 값 (Option value) */
   value: string | null;
-  /** 선택 값 변경 */
   onChange: (v: string | null) => void;
 
-  /** 입력값(검색어) controlled로 쓰고 싶을 때 */
   inputValue?: string;
-  /** 입력값 변경 */
   onInputChange?: (v: string) => void;
 
-  /** 비활성화 */
   disabled?: boolean;
 
-  /** children: Autocomplete.Input / Autocomplete.Options / Autocomplete.Option */
+  /** 옵션 필터 커스터마이즈 */
+  filterFn?: (item: AutocompleteItem, query: string) => boolean;
+
   children: ReactNode;
 }
 
-export interface AutocompleteInputProps extends InputHTMLAttributes<HTMLInputElement> {}
+export interface AutocompleteInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  /** label 연결용 (없으면 aria-label 필수) */
+  'aria-label'?: string;
+}
 
-export interface AutocompleteOptionsProps extends HTMLAttributes<HTMLDivElement> {}
+export interface AutocompleteOptionsProps extends HTMLAttributes<HTMLDivElement> {
+  /** ✅ 가상화 모드: 데이터 기반 */
+  items?: AutocompleteItem[];
+  /** 가상화 모드에서 항목 렌더 */
+  renderItem?: (item: AutocompleteItem) => ReactNode;
+
+  /** virtualization 옵션 */
+  itemHeight?: number; // px
+  maxVisibleItems?: number; // 화면에 최대 몇 개 보여줄지
+  overscan?: number; // 위/아래 여분 렌더 수
+}
 
 export interface AutocompleteOptionProps extends HTMLAttributes<HTMLDivElement> {
-  /** 실제 선택되는 값 */
+  /** children 모드(비가상화) */
   value: string;
-  /** 검색/표시에 사용할 텍스트 */
   label: string;
-  /** 비활성화 */
   disabled?: boolean;
 }

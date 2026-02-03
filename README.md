@@ -23,6 +23,7 @@ React용 Headless UI 라이브러리
 ### Components
 
 * Select (Compound Component, Portal 기반)
+* Autocomplete (Compound Component, Portal 기반)
 * TextInput
 * NumberInput
 * Tooltip (Portal 기반)
