@@ -498,6 +498,110 @@ const Option = ({ value, label, disabled, children, ...props }: AutocompleteOpti
   );
 };
 
+/**
+ * 범용 Autocomplete(Combobox) 컴포넌트 (Compound API)
+ *
+ * - Compound 구성: <Autocomplete> + <Autocomplete.Input /> + <Autocomplete.Options /> + <Autocomplete.Option />
+ * - a11y: combobox/listbox/option role + aria-controls/activedescendant + aria-live(결과 수 안내)
+ * - 키보드: ArrowUp/Down 이동, Enter 선택, Escape 닫기, Tab 닫기
+ * - IME(한글/일본어) 조합 입력 중에는 방향키/엔터 선택 로직을 막아 UX를 보호
+ * - Options는 portal로 렌더링되며, outside click 시 닫힘
+ *
+ * ## 모드
+ * 1) items 모드 (권장)
+ * - <Autocomplete.Options items={...} renderItem={...} />
+ * - 내부에서 filterFn으로 filtered를 만들고, Options는 filtered를 가상화로 렌더
+ *
+ * 2) children 모드 (간단 리스트)
+ * - <Autocomplete.Options> 안에 <Autocomplete.Option />을 직접 나열
+ * - 소규모 옵션에만 권장 (가상화/activeIndex 기반 aria-activedescendant는 items 모드가 더 적합)
+ *
+ * @example
+ * // 1) items 모드 (기본 / 권장)
+ * const items = [
+ *   { value: 'apple', label: 'Apple' },
+ *   { value: 'banana', label: 'Banana' },
+ *   { value: 'grape', label: 'Grape' },
+ * ];
+ *
+ * const [value, setValue] = useState<string | null>(null);
+ *
+ * <Autocomplete value={value} onChange={setValue}>
+ *   <Autocomplete.Input placeholder="과일을 검색하세요" />
+ *   <Autocomplete.Options
+ *     items={items}
+ *     renderItem={(item) => <div style={{ padding: 8 }}>{item.label}</div>}
+ *   />
+ * </Autocomplete>
+ *
+ * @example
+ * // 2) 입력값(query)까지 controlled로 관리하고 싶을 때
+ * const [value, setValue] = useState<string | null>(null);
+ * const [inputValue, setInputValue] = useState('');
+ *
+ * <Autocomplete
+ *   value={value}
+ *   onChange={setValue}
+ *   inputValue={inputValue}
+ *   onInputChange={setInputValue}
+ * >
+ *   <Autocomplete.Input placeholder="검색어 제어" />
+ *   <Autocomplete.Options
+ *     items={items}
+ *     renderItem={(item) => <div style={{ padding: 8 }}>{item.label}</div>}
+ *   />
+ * </Autocomplete>
+ *
+ * @example
+ * // 3) filterFn 커스터마이징 (prefix match)
+ * const startsWithFilter = (item, query) =>
+ *   item.label.toLowerCase().startsWith(query.trim().toLowerCase());
+ *
+ * <Autocomplete value={value} onChange={setValue} filterFn={startsWithFilter}>
+ *   <Autocomplete.Input placeholder="앞글자 매칭" />
+ *   <Autocomplete.Options
+ *     items={items}
+ *     renderItem={(item) => <div style={{ padding: 8 }}>{item.label}</div>}
+ *   />
+ * </Autocomplete>
+ *
+ * @example
+ * // 4) 가상화 옵션 조정 (많은 데이터)
+ * <Autocomplete value={value} onChange={setValue}>
+ *   <Autocomplete.Input placeholder="대량 데이터" />
+ *   <Autocomplete.Options
+ *     items={bigItems}
+ *     renderItem={(item) => <div style={{ padding: 8 }}>{item.label}</div>}
+ *     itemHeight={36}
+ *     maxVisibleItems={8}
+ *     overscan={3}
+ *   />
+ * </Autocomplete>
+ *
+ * @example
+ * // 5) disabled
+ * <Autocomplete value={value} onChange={setValue} disabled>
+ *   <Autocomplete.Input placeholder="비활성화" />
+ *   <Autocomplete.Options
+ *     items={items}
+ *     renderItem={(item) => <div style={{ padding: 8 }}>{item.label}</div>}
+ *   />
+ * </Autocomplete>
+ *
+ * @example
+ * // 6) children 모드 (소규모 리스트에만 권장)
+ * const [value, setValue] = useState<string | null>(null);
+ *
+ * <Autocomplete value={value} onChange={setValue}>
+ *   <Autocomplete.Input placeholder="직접 옵션 나열" />
+ *   <Autocomplete.Options>
+ *     <Autocomplete.Option value="seoul" label="Seoul" />
+ *     <Autocomplete.Option value="busan" label="Busan" />
+ *     <Autocomplete.Option value="jeju" label="Jeju" disabled />
+ *   </Autocomplete.Options>
+ * </Autocomplete>
+ */
+
 export const Autocomplete = Object.assign(AutocompleteContainer, {
   Input,
   Options,
