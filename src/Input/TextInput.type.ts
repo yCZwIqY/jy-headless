@@ -1,4 +1,4 @@
-import { ChangeEvent, CompositionEvent, HTMLProps } from 'react';
+import { ChangeEvent, CompositionEvent, InputHTMLAttributes } from 'react';
 
 /**
  * 고급 기능을 제공하는 TextInput 컴포넌트 props
@@ -10,7 +10,7 @@ import { ChangeEvent, CompositionEvent, HTMLProps } from 'react';
  * - IME(한글 입력) 대응
  * - 공백 제어
  */
-export interface TextInputProps extends HTMLProps<HTMLInputElement> {
+export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
    * 입력값 검증 함수
    *

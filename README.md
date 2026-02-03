@@ -10,7 +10,6 @@ React용 Headless UI 라이브러리
 * 스타일 비강제 (디자인 시스템 자유 적용)
 * Portal 기반 레이어 UI 지원
 * 고급 입력 처리 지원
-
     * debounce / throttle
     * validate / format / parse
     * IME 대응
@@ -23,10 +22,10 @@ React용 Headless UI 라이브러리
 
 ### Components
 
-* Select (Compound Component)
+* Select (Compound Component, Portal 기반)
 * TextInput
 * NumberInput
-* Tooltip / Popover (Portal 기반)
+* Tooltip (Portal 기반)
 
 ---
 
