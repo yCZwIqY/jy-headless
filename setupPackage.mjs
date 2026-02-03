@@ -10,7 +10,6 @@ function createExportsMap(distPath, basePath = '.') {
 	const exportsMap = basePath === '.' ? {
 		'.': {
 			import: './index.js',
-			require: './cjs/index.js',
 			types: './index.d.ts'
 		}
 	} : {};
@@ -26,7 +25,6 @@ function createExportsMap(distPath, basePath = '.') {
 			if (fs.existsSync(indexJsPath)) {
 				exportsMap[`./${relativePath}`] = {
 					import: `./${relativePath}/index.js`,
-					require: `./cjs/${relativePath}/index.js`,
 					types: `./${relativePath}/index.d.ts`
 				};
 			}
@@ -41,7 +39,6 @@ function createExportsMap(distPath, basePath = '.') {
 			const shortName = jsFullPath.split('/').pop();
 			exportsMap[`./${shortName}`] = {
 				import: `./${jsFullPath}.js`,
-				require: `./cjs/${jsFullPath}.js`,
 				types: `./${jsFullPath}.d.ts`
 			};
 		}
@@ -64,7 +61,6 @@ function main() {
 		description: rootPackageJson.description,
 		license: rootPackageJson.license,
 		repository: rootPackageJson.repository,
-		main: './cjs/index.js',
 		module: './index.js',
 		types: './index.d.ts',
 		exports,

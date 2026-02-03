@@ -11,22 +11,20 @@ export default {
 			format: 'esm',
 			preserveModules: true,
 			preserveModulesRoot: 'src',
-		},
-		{
-			dir: 'dist/cjs',
-			format: 'cjs',
-			preserveModules: true,
-			preserveModulesRoot: 'src',
+			sourcemap: true,
+			entryFileNames: '[name].js',
+			chunkFileNames: '[name]-[hash].js',
 		},
 	],
 	plugins: [
 		peerDepsExternal(),
 		resolve(),
-		commonjs(),
 		typescript({
 			tsconfig: './tsconfig.json',
+			useTsconfigDeclarationDir: true,
+			clean: true,
 		}),
 		
 	],
-	external: ['react', 'react-dom'],
+	external: ['react', 'react-dom', 'react/jsx-runtime'],
 };
