@@ -20,7 +20,7 @@ React용 Headless UI 라이브러리
 
 ## 스토리북
 
-[Storybook](https://6795bdd4b570ec0f79b87452-rmxhztnaqg.chromatic.com/?path=/docs/components-autocomplete--docs) 에서
+[Storybook](https://6795bdd4b570ec0f79b87452-qftcxgjbxx.chromatic.com/?path=/docs) 에서
 컴포넌트를 테스트 해 볼 수 있습니다
 ___
 
@@ -32,6 +32,7 @@ ___
 * Autocomplete (Compound Component, Portal 기반)
 * TextInput
 * NumberInput
+* BooleanInput (checkbox / switch)
 * Tooltip (Portal 기반)
 
 ---

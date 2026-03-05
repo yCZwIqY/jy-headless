@@ -31,7 +31,7 @@
     "tailwind",
     "storybook"
   ],
-  "author": "",
+  "author": "jiyoon",
   "license": "MIT",
   "type": "module",
   "devDependencies": {
