@@ -31,6 +31,18 @@ const meta = {
       control: 'number',
       description: 'thumb 크기(px)',
     },
+    switchActiveColor: {
+      control: 'color',
+      description: '스위치 활성 배경색',
+    },
+    switchInactiveColor: {
+      control: 'color',
+      description: '스위치 비활성 배경색',
+    },
+    switchThumbColor: {
+      control: 'color',
+      description: '스위치 기본 thumb 색상',
+    },
     disabled: {
       control: 'boolean',
       description: '비활성화 여부',
@@ -92,5 +104,97 @@ export const CustomSizeSwitch: Story = {
     switchWidth: 64,
     switchHeight: 34,
     thumbSize: 26,
+  },
+};
+
+export const CustomSwitchColors: Story = {
+  args: {
+    variant: 'switch',
+    label: '색상 커스텀',
+    switchActiveColor: '#4a4a4a',
+    switchInactiveColor: '#d6d6d6',
+  },
+};
+
+export const CustomSwitchThumbColor: Story = {
+  args: {
+    variant: 'switch',
+    label: 'thumb 색상 커스텀',
+    switchThumbColor: '#1f1f1f',
+  },
+};
+
+export const CustomSwitchThumb: Story = {
+  render: (args) => {
+    const [checked, setChecked] = useState(false);
+
+    return (
+      <BooleanInput
+        {...args}
+        variant='switch'
+        label='thumb 대체'
+        checked={checked}
+        onChange={(e) => setChecked(e.target.checked)}
+        switchWidth={56}
+        switchHeight={30}
+        thumbSize={26}
+        switchThumb={({ checked: isChecked }) => (
+          <span
+            style={{
+              width: '100%',
+              height: '100%',
+              borderRadius: '50%',
+              backgroundColor: isChecked ? '#151515' : '#f5f5f5',
+              color: isChecked ? '#ffffff' : '#5f5f5f',
+              border: '1px solid #c9c9c9',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 11,
+              lineHeight: 1,
+              userSelect: 'none',
+            }}
+          >
+            {isChecked ? 'ON' : 'OFF'}
+          </span>
+        )}
+      />
+    );
+  },
+};
+
+export const CustomCheckboxInput: Story = {
+  render: (args) => {
+    const [checked, setChecked] = useState(false);
+
+    return (
+      <BooleanInput
+        {...args}
+        variant='checkbox'
+        label='커스텀 체크박스'
+        checked={checked}
+        onChange={(e) => setChecked(e.target.checked)}
+        checkboxInput={({ checked: isChecked, disabled }) => (
+          <span
+            style={{
+              width: 18,
+              height: 18,
+              borderRadius: 4,
+              border: `1px solid ${disabled ? '#bababa' : '#777'}`,
+              backgroundColor: isChecked ? '#585858' : '#ffffff',
+              color: '#ffffff',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 12,
+              lineHeight: 1,
+              transition: 'all 0.2s ease',
+            }}
+          >
+            {isChecked ? '✓' : ''}
+          </span>
+        )}
+      />
+    );
   },
 };
