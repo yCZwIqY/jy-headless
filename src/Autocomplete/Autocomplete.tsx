@@ -1,5 +1,12 @@
-import React, { createContext, useContext, useEffect, useId, useMemo, useRef, useState } from 'react';
-import usePortal from '../hooks/usePortal';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import type {
   AutocompleteInputProps,
   AutocompleteItem,
@@ -8,6 +15,7 @@ import type {
   AutocompleteProps,
 } from './Autocomplete.type';
 import { TextInput } from '../Input';
+import { usePortal } from '../hooks';
 
 type Ctx = {
   open: boolean;
@@ -57,14 +65,14 @@ const defaultFilter = (item: AutocompleteItem, query: string) =>
  * Root
  */
 const AutocompleteContainer = ({
-                                 value,
-                                 onChange,
-                                 inputValue,
-                                 onInputChange,
-                                 disabled,
-                                 filterFn = defaultFilter,
-                                 children,
-                               }: AutocompleteProps) => {
+  value,
+  onChange,
+  inputValue,
+  onInputChange,
+  disabled,
+  filterFn = defaultFilter,
+  children,
+}: AutocompleteProps) => {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
@@ -172,13 +180,13 @@ const useItemsBridge = () => useContext(ItemsBridgeContext);
 // ...생략
 
 const Input = ({
-                 onKeyDown,
-                 onFocus,
-                 onChange,
-                 onCompositionStart,
-                 onCompositionEnd,
-                 ...props
-               }: AutocompleteInputProps) => {
+  onKeyDown,
+  onFocus,
+  onChange,
+  onCompositionStart,
+  onCompositionEnd,
+  ...props
+}: AutocompleteInputProps) => {
   const {
     open,
     setOpen,
@@ -209,8 +217,8 @@ const Input = ({
     <>
       <TextInput
         ref={inputRef}
-        role='combobox'
-        aria-autocomplete='list'
+        role="combobox"
+        aria-autocomplete="list"
         aria-expanded={open}
         aria-controls={listboxId}
         aria-activedescendant={activeId}
@@ -277,7 +285,7 @@ const Input = ({
       />
       {/* aria-live: 결과 수 안내 */}
       <span
-        aria-live='polite'
+        aria-live="polite"
         style={{
           position: 'absolute',
           width: 1,
@@ -300,14 +308,14 @@ const Input = ({
  * - virtualization (items + renderItem provided)
  */
 const Options = ({
-                   items,
-                   renderItem,
-                   itemHeight = 36,
-                   maxVisibleItems = 8,
-                   overscan = 3,
-                   children,
-                   ...props
-                 }: AutocompleteOptionsProps) => {
+  items,
+  renderItem,
+  itemHeight = 36,
+  maxVisibleItems = 8,
+  overscan = 3,
+  children,
+  ...props
+}: AutocompleteOptionsProps) => {
   const bridge = useItemsBridge();
   const {
     open,
@@ -359,7 +367,8 @@ const Options = ({
     const viewBottom = viewTop + scrollRef.current.clientHeight;
 
     if (top < viewTop) scrollRef.current.scrollTop = top;
-    else if (bottom > viewBottom) scrollRef.current.scrollTop = bottom - scrollRef.current.clientHeight;
+    else if (bottom > viewBottom)
+      scrollRef.current.scrollTop = bottom - scrollRef.current.clientHeight;
   }, [open, activeIndex, itemHeight]);
 
   // virtualization range
@@ -380,16 +389,12 @@ const Options = ({
     direction: 'bottom',
     gap: 4,
     content: (
-      <div
-        ref={popoverRef}
-        style={{ width: triggerWidth }}
-        {...props}
-      >
+      <div ref={popoverRef} style={{ width: triggerWidth }} {...props}>
         {/* ✅ 가상화 모드 */}
         {items && renderItem ? (
           <div
             id={listboxId}
-            role='listbox'
+            role="listbox"
             ref={scrollRef}
             style={{ maxHeight: viewportHeight, overflow: 'auto', position: 'relative' }}
             onScroll={(e) => setScrollTop((e.target as HTMLDivElement).scrollTop)}
@@ -404,7 +409,7 @@ const Options = ({
                   <div
                     key={item.value}
                     id={`${listboxId}-opt-${index}`}
-                    role='option'
+                    role="option"
                     aria-selected={isSelected}
                     aria-disabled={item.disabled}
                     data-active={isActive}
@@ -433,8 +438,7 @@ const Options = ({
           </div>
         ) : (
           /* ✅ children 모드(비가상화) */
-          <div id={listboxId}
-               role='listbox'>
+          <div id={listboxId} role="listbox">
             {children}
           </div>
         )}

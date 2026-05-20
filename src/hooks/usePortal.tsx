@@ -27,7 +27,7 @@ type UsePortalProps = {
   autoFlip?: boolean; // 자동 위치 조정 여부
 };
 
-const usePortal = ({
+export const usePortal = ({
                      content,
                      key,
                      visible = true,
@@ -131,5 +131,3 @@ const usePortal = ({
 
   return { portal, rootDom, finalDirection };
 };
-
-export default usePortal;

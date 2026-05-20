@@ -1,6 +1,20 @@
-import { createContext, Dispatch, SetStateAction, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import usePortal from '../hooks/usePortal';
-import { SelectOptionProps, SelectOptionsProps, SelectProps, SelectTriggerProps } from './Select.type';
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import {
+  SelectOptionProps,
+  SelectOptionsProps,
+  SelectProps,
+  SelectTriggerProps,
+} from './Select.type';
+import { usePortal } from '../hooks';
 
 /**
  * Select 내부 상태 공유용 Context
@@ -66,11 +80,7 @@ const SelectContainer = ({ value, onChange, multiple = false, children }: Select
       return;
     }
 
-    onChange(
-      value.includes(v)
-        ? value.filter(i => i !== v)
-        : [...value, v],
-    );
+    onChange(value.includes(v) ? value.filter((i) => i !== v) : [...value, v]);
   };
 
   return (
@@ -128,9 +138,7 @@ const Trigger = (props: SelectTriggerProps) => {
 const Options = ({ children, ...props }: SelectOptionsProps) => {
   const { open, triggerRef, setOpen, setFocusedIndex, optionRefs } = useSelectContext();
   const popoverRef = useRef<HTMLDivElement>(null);
-  const triggerWidth =
-    triggerRef.current?.getBoundingClientRect().width;
-
+  const triggerWidth = triggerRef.current?.getBoundingClientRect().width;
 
   useEffect(() => {
     if (!open) return;
@@ -138,10 +146,7 @@ const Options = ({ children, ...props }: SelectOptionsProps) => {
     const handleOutsideClick = (e: MouseEvent) => {
       const target = e.target as Node;
 
-      if (
-        triggerRef.current?.contains(target) ||
-        popoverRef.current?.contains(target)
-      ) {
+      if (triggerRef.current?.contains(target) || popoverRef.current?.contains(target)) {
         return;
       }
 
@@ -165,11 +170,11 @@ const Options = ({ children, ...props }: SelectOptionsProps) => {
       }
 
       if (e.key === 'ArrowUp') {
-        setFocusedIndex(prev => prev - 1 < 0 ? optionRefs.current.length - 1 : prev - 1);
+        setFocusedIndex((prev) => (prev - 1 < 0 ? optionRefs.current.length - 1 : prev - 1));
       }
 
       if (e.key === 'ArrowDown') {
-        setFocusedIndex(prev => prev + 1 >= optionRefs.current.length ? 0 : prev + 1);
+        setFocusedIndex((prev) => (prev + 1 >= optionRefs.current.length ? 0 : prev + 1));
       }
     };
 
@@ -178,7 +183,6 @@ const Options = ({ children, ...props }: SelectOptionsProps) => {
       optionRefs.current = [];
       document.removeEventListener('keydown', handleKeyDown);
     };
-
   }, [open]);
 
   const { portal } = usePortal({
@@ -188,8 +192,7 @@ const Options = ({ children, ...props }: SelectOptionsProps) => {
     direction: 'bottom',
     gap: 4,
     content: (
-      <div ref={popoverRef}
-           style={{ width: triggerWidth }} {...props}>
+      <div ref={popoverRef} style={{ width: triggerWidth }} {...props}>
         {children}
       </div>
     ),
@@ -230,7 +233,7 @@ const Option = ({ value, disabled, children, ...props }: SelectOptionProps) => {
   return (
     <div
       ref={ref}
-      role='option'
+      role="option"
       aria-selected={isSelected}
       aria-disabled={disabled}
       data-focused={isFocused}

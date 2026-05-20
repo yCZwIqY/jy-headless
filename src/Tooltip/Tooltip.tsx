@@ -1,6 +1,6 @@
 import { TooltipProps } from './Tooltip.type';
 import { useRef, useState } from 'react';
-import usePortal from '../hooks/usePortal';
+import { usePortal } from '../hooks';
 
 /**
  * 범용 Tooltip 컴포넌트
@@ -10,7 +10,14 @@ import usePortal from '../hooks/usePortal';
  *   <button>Hover me</button>
  * </Tooltip>
  */
-export const Tooltip = ({ direction = 'top', popover, children, key, gap = 0, autoFlip = true }: TooltipProps) => {
+export const Tooltip = ({
+  direction = 'top',
+  popover,
+  children,
+  key,
+  gap = 0,
+  autoFlip = true,
+}: TooltipProps) => {
   const [visible, setVisible] = useState<boolean>(false);
   const targetRef = useRef<HTMLSpanElement>(null);
   const popoverRef = useRef<HTMLSpanElement>(null);
