@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 type Position = { top: number; left: number };
 
 export type Direction =
-  'top-left'
+  | 'top-left'
   | 'top-center'
   | 'top'
   | 'top-right'
@@ -25,20 +25,25 @@ type UsePortalProps = {
   gap?: number;
   position?: Position;
   autoFlip?: boolean; // 자동 위치 조정 여부
+  rootId?: string;
 };
 
 export const usePortal = ({
-                     content,
-                     key,
-                     visible = true,
-                     targetRef,
-                     popoverRef,
-                     direction = 'top',
-                     gap = 0,
-                     position: customPosition,
-                     autoFlip = true,
-                   }: UsePortalProps) => {
-  const rootDom = useMemo(() => document.body, []);
+  content,
+  key,
+  visible = true,
+  targetRef,
+  popoverRef,
+  direction = 'top',
+  gap = 0,
+  position: customPosition,
+  autoFlip = true,
+  rootId,
+}: UsePortalProps) => {
+  const rootDom = useMemo(
+    () => (rootId ? (document.getElementById('rootId') as HTMLElement) : document.body),
+    [rootId],
+  );
   const [position, setPosition] = useState<Position>(customPosition || { top: 0, left: 0 });
   const [finalDirection, setFinalDirection] = useState<Direction>(direction);
 
@@ -64,9 +69,9 @@ export const usePortal = ({
 
     let left = dir.endsWith('left')
       ? targetRect.left - popoverRect.width - gap
-      : (dir.endsWith('right')
+      : dir.endsWith('right')
         ? targetRect.left + targetRect.width + gap
-        : targetRect.left + targetRect.width / 2 - popoverRect.width / 2);
+        : targetRect.left + targetRect.width / 2 - popoverRect.width / 2;
 
     return { top, left };
   };
@@ -125,7 +130,9 @@ export const usePortal = ({
     >
       {content}
     </span>
-  ) : content;
+  ) : (
+    content
+  );
 
   const portal = createPortal(wrappedContent, rootDom, key);
 
