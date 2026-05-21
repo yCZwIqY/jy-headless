@@ -41,7 +41,7 @@ export const usePortal = ({
   rootId,
 }: UsePortalProps) => {
   const rootDom = useMemo(
-    () => (rootId ? (document.getElementById('rootId') as HTMLElement) : document.body),
+    () => (rootId ? (document.getElementById(rootId) as HTMLElement) : document.body),
     [rootId],
   );
   const [position, setPosition] = useState<Position>(customPosition || { top: 0, left: 0 });
